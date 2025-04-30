@@ -118,6 +118,10 @@ const API_SITES = {
         api: 'https://api.zuidapi.com',
         name: '最大资源'
     },
+    lebo: {
+        api: 'https://lbapi9.com',
+        name: '乐播资源'
+    },
     yutu: {
         api: 'https://yutuzy10.com',
         name: '玉兔资源',
