@@ -120,7 +120,11 @@ const API_SITES = {
     },
     lebo: {
         api: 'https://lbapi9.com',
-        name: '乐播资源'
+        name: '乐播18'
+    },
+    shayu: {
+        api: 'https://shayuapi.com',
+        name: '傻鱼18'
     },
     yutu: {
         api: 'https://yutuzy10.com',
