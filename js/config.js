@@ -242,7 +242,7 @@ const ERROR_MESSAGES = {
 const SECURITY_CONFIG = {
     enableXSSProtection: true,  // 是否启用XSS保护
     sanitizeUrls: true,         // 是否清理URL
-    maxQueryLength: 100,        // 最大搜索长度
+    maxQueryLength: 200,        // 最大搜索长度
     // allowedApiDomains 不再需要，因为所有请求都通过内部代理
 };
 
