@@ -157,7 +157,7 @@ const API_SITES = {
          adult: true
      },
     yutu: {
-         api: 'https://hsex.icu//api.php/provide/vod',
+         api: 'https://hsex.icu/api.php/provide/vod',
          name: '好色TV资源',
          adult: true
      },
