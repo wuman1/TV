@@ -160,7 +160,7 @@ const API_SITES = {
          api: 'https://hsex.icu/api.php/provide/vod',
          name: '好色TV资源',
          adult: true,
-         detail: 'https://hsex.icu
+         detail: 'https://hsex.icu'
      },
 
     // 下面是资源失效率高的API源，不建议使用
