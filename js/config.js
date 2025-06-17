@@ -169,7 +169,7 @@ const API_SITES = {
     // subo: {
     //     api: 'https://subocaiji.com/api.php/provide/vod',
     //     name: '速播资源'
-    },
+    // },
     // fczy: {
     //     api: 'https://api.fczy888.me/api.php/provide/vod',
     //     name: '蜂巢资源'
