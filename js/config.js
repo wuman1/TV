@@ -149,18 +149,18 @@ const API_SITES = {
         adult: true
     },
     lsb: {
-        api: 'https://apilsbzy1.com/api.php/provide/vod/?ac=list',
+        api: 'https://apilsbzy1.com/api.php/provide/vod',
         name: 'lsb资源',
         adult: true
     },
     huangcang: {
-        api: 'https://hsckzy.vip',
+        api: 'https://hsckzy.vip/api.php/provide/vod',
         name: '黄色仓库',
         adult: true,
         detail: 'https://hsckzy.vip'
     },
     yutu: {
-        api: 'https://yutuzy10.com',
+        api: 'https://apiyutu.com/api.php/providedao/vod',
         name: '玉兔资源',
         adult: true
     },
