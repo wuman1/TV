@@ -173,11 +173,11 @@ const API_SITES = {
     // fczy: {
     //     api: 'https://api.fczy888.me/api.php/provide/vod',
     //     name: '蜂巢资源'
-    },
+    // },
     // ukzy: {
     //     api: 'https://api.ukuapi88.com/api.php/provide/vod',
     //     name: 'U酷资源'
-    },
+    // },
 };
 
 // 添加聚合搜索的配置选项
