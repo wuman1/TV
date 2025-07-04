@@ -115,6 +115,66 @@ const API_SITES = {
         name: '空内容测试源',
         adult: true
     },
+    fantuan: {
+        api: 'https://www.fantuan.tv/api.php/provide/vod',
+        name: '饭团影视'
+    },
+    cj: {
+        api: 'https://cj.lziapi.com/api.php/provide/vod',
+        name: '影视工厂'
+    },
+    qiqidys: {
+        api: 'https://www.qiqidys.com/api.php/provide/vod',
+        name: '七七资源'
+    },
+    fantaiyi: {
+        api: 'http://www.饭太硬.net/tv',
+        name: '饭太硬'
+    },
+    fatcat: {
+        api: 'http://肥猫.com',
+        name: '肥猫'
+    },
+    xiaomi: {
+        api: 'https://mpanso.me/DEMO.json',
+        name: '小米'
+    },
+    wongxiao: {
+        api: 'http://tvbox.xn--4kq62z5rby2qupq9ub.top',
+        name: '王二小'
+    },
+    lingyi: {
+        api: 'https://100km.top/0',
+        name: '純一騷零'
+    },
+    ikun: {
+        api: 'https://ikunzyapi.com/api.php/provide/vod',
+        name: 'iKun资源'
+    },
+    OK: {
+        api: 'http://ok321.top/tv',
+        name: 'ok'
+    },
+    qiaoji: {
+        api: 'http://cdn.qiaoji8.com/tvbox.json',
+        name: '巧技'
+    },
+    XBPQ: {
+        api: 'https://tv.xn--yhqu5zs87a.top',
+        name: 'XBPQ'
+    },
+    lamfun: {
+        api: 'https://ghproxy.net/https://raw.githubusercontent.com/yoursmile66/TVBox/main/XC.json',
+        name: '南風'
+    },
+    xiaobai: {
+        api: 'http://bp.tvbox.cam',
+        name: '小白'
+    },
+    xiaogao: {
+        api: 'http://tv.nxog.top/m',
+        name: '區歌'
+    },
     // 下面是一些成人内容的API源，默认隐藏，使用本项目浏览黄色内容违背项目初衷
     // 互联网上传播的色情内容将人彻底客体化、工具化，是性别解放和人类平等道路上的巨大障碍。
     // 这些黄色影片是资本主义父权制压迫的最恶毒体现，它将暴力和屈辱商品化，践踏人的尊严，对受害者造成无法弥愈的伤害，并毒害社会关系。
