@@ -16,6 +16,58 @@
     <script src="libs/tailwindcss.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/index.css">
+    <style>
+        :root {
+            --bg: #f3f4f6;
+            --bg-panel: #fff;
+            --text: #18181c;
+            --text-secondary: #444;
+            --border: #e5e7eb;
+            --primary: #6366f1;
+            --primary-accent: #0ea5e9;
+            --secondary: #f472b6;
+            --button-bg: #6366f1;
+            --button-bg-hover: #7c3aed;
+            --button-text: #fff;
+        }
+        .dark {
+            --bg: #18181c;
+            --bg-panel: #23232b;
+            --text: #f3f4f6;
+            --text-secondary: #b3b3b3;
+            --border: #23232b;
+            --primary: #7c3aed;
+            --primary-accent: #06b6d4;
+            --secondary: #f472b6;
+            --button-bg: #7c3aed;
+            --button-bg-hover: #6366f1;
+            --button-text: #fff;
+        }
+        body, html {
+            background: var(--bg);
+            color: var(--text);
+        }
+        .page-bg { background: var(--bg); }
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--primary-accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        .border, .border-t, .border-b, .border-l, .border-r {
+            border-color: var(--border) !important;
+        }
+        .bg-panel { background: var(--bg-panel); }
+        .text-secondary { color: var(--text-secondary); }
+        .btn-primary {
+            background: var(--button-bg);
+            color: var(--button-text);
+        }
+        .btn-primary:hover {
+            background: var(--button-bg-hover);
+        }
+    </style>
 </head>
 <body class="page-bg text-white">
     <!-- 将历史记录按钮移到左上角，并缩小尺寸 -->
@@ -28,11 +80,17 @@
     </div>
 
     <!-- 设置按钮保留在右上角，并缩小尺寸 -->
-    <div class="fixed top-4 right-4 z-10">
+    <div class="fixed top-4 right-4 z-10 flex space-x-2">
         <button onclick="toggleSettings(event)" class="bg-[#222] hover:bg-[#333] border border-[#333] hover:border-white rounded-lg px-3 py-1.5 transition-colors" aria-label="打开设置">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+        </button>
+        <!-- 明暗模式切换按钮 -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="bg-[#222] hover:bg-[#333] border border-[#333] hover:border-white rounded-lg px-3 py-1.5 transition-colors" aria-label="切换明暗模式">
+            <svg id="themeIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path id="themeIconPath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
         </button>
     </div>
@@ -436,5 +494,34 @@
 
     <!-- 添加弹窗和URL搜索参数处理脚本 -->
     <script src="js/index-page.js"></script>
+
+    <!-- 添加明暗模式切换脚本 -->
+    <script>
+    // 明暗模式切换逻辑
+    function setTheme(theme) {
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+            document.getElementById('themeIconPath').setAttribute('d', 'M21.752 15.002A9.718 9.718 0 0112 21c-5.523 0-10-4.477-10-10 0-4.418 2.865-8.166 6.885-9.542.512-.176.98.36.746.846A7.5 7.5 0 0019.5 12c0 1.61-.508 3.102-1.385 4.342-.234.336.06.8.637.66z');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+            document.getElementById('themeIconPath').setAttribute('d', 'M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.07l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.93l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z');
+        }
+    }
+    function toggleTheme() {
+        const isDark = document.documentElement.classList.contains('dark');
+        setTheme(isDark ? 'light' : 'dark');
+    }
+    // 初始化主题
+    (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+    })();
+    </script>
 </body>
 </html>
