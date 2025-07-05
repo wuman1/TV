@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>生成Viewer图标</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .icon-container { margin: 20px 0; }
+        canvas { border: 1px solid #ccc; margin: 10px; }
+        .download-btn { 
+            background: #4CAF50; 
+            color: white; 
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            margin: 5px;
+        }
+        .download-btn:hover { background: #45a049; }
+    </style>
+</head>
+<body>
+    <h1>Cookie Viewer 图标生成器</h1>
+    <p>点击下面的按钮生成并下载图标文件</p>
+    
+    <div class="icon-container">
+        <h3>16x16 图标</h3>
+        <canvas id="icon16" width="16" height="16"></canvas>
+        <button class="download-btn" onclick="downloadIcon('icon16', 'icon16.png')">下载 16x16</button>
+    </div>
+    
+    <div class="icon-container">
+        <h3>48x48 图标</h3>
+        <canvas id="icon48" width="48" height="48"></canvas>
+        <button class="download-btn" onclick="downloadIcon('icon48', 'icon48.png')">下载 48x48</button>
+    </div>
+    
+    <div class="icon-container">
+        <h3>128x128 图标</h3>
+        <canvas id="icon128" width="128" height="128"></canvas>
+        <button class="download-btn" onclick="downloadIcon('icon128', 'icon128.png')">下载 128x128</button>
+    </div>
+
+    <script>
+        // 绘制Cookie图标
+        function drawCookieIcon(canvasId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // 清空画布
+            ctx.clearRect(0, 0, size, size);
+            
+            // 设置缩放比例
+            const scale = size / 128;
+            ctx.scale(scale, scale);
+            
+            // 绘制Cookie背景（圆形）
+            ctx.fillStyle = '#FF9800';
+            ctx.beginPath();
+            ctx.arc(64, 64, 60, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // 绘制Cookie纹理
+            ctx.fillStyle = '#E65100';
+            ctx.beginPath();
+            ctx.arc(40, 40, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(88, 40, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(40, 88, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(88, 88, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(64, 64, 4, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // 绘制文字 "C"
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 32px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('C', 64, 64);
+            
+            // 重置变换
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+        }
+        
+        // 下载图标
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // 页面加载时绘制所有图标
+        window.onload = function() {
+            drawCookieIcon('icon16', 16);
+            drawCookieIcon('icon48', 48);
+            drawCookieIcon('icon128', 128);
+        };
+    </script>
+</body>
+</html> 
