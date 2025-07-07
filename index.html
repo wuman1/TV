@@ -445,75 +445,464 @@
         </div>
         <div class="card" id="isp-dns">
             <h2>各省运营商 IPv6 DNS</h2>
-            <table class="dns-table">
-                <tr>
-                    <th>省份</th>
-                    <th>电信 IPv6</th>
-                </tr>
-                <tr>
-                    <td>河北电信</td>
-                    <td><span class="copyable">240c::6666</span> <span class="copyable">240c::6644</span></td>
-                </tr>
-                <tr>
-                    <td>广东电信</td>
-                    <td><span class="copyable">240e:4c:4000::1</span> <span class="copyable">240e:4c:4000::2</span></td>
-                </tr>
-                <tr>
-                    <td>山东电信</td>
-                    <td><span class="copyable">2400:3200::1</span></td>
-                </tr>
-                <tr>
-                    <td>四川电信</td>
-                    <td><span class="copyable">240e:18c:0:400::6</span> <span class="copyable">240e:18c:0:400::7</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>湖北电信</td>
-                    <td><span class="copyable">240e:8c:0:400::6</span> <span class="copyable">240e:8c:0:400::7</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>陕西电信</td>
-                    <td><span class="copyable">240e:1c0:4000::1</span> <span class="copyable">240e:1c0:4000::2</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>安徽电信</td>
-                    <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span></td>
-                </tr>
-                <tr>
-                    <td>贵州电信</td>
-                    <td><span class="copyable">240e:1c4:4000::1</span> <span class="copyable">240e:1c4:4000::2</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>天津电信</td>
-                    <td><span class="copyable">240e:4:4000::1</span> <span class="copyable">240e:4:4000::2</span></td>
-                </tr>
-                <tr>
-                    <td>新疆电信</td>
-                    <td><span class="copyable">240e:1c8:4000::1</span> <span class="copyable">240e:1c8:4000::2</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>广西电信</td>
-                    <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span></td>
-                </tr>
-                <tr>
-                    <td>湖南电信</td>
-                    <td><span class="copyable">240e:8c:0:400::6</span> <span class="copyable">240e:8c:0:400::7</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>福建电信</td>
-                    <td><span class="copyable">240e:18c:0:400::6</span> <span class="copyable">240e:18c:0:400::7</span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>江苏电信</td>
-                    <td><span class="copyable">240e:4c:4000::1</span> <span class="copyable">240e:4c:4000::2</span></td>
-                </tr>
-            </table>
+            <div style="margin-bottom:1.2em;">
+                <b style="color:var(--main-color);font-size:1.08em;">中国电信</b>
+                <table class="dns-table">
+                    <tr>
+                        <th>省份</th>
+                        <th>IPv6 DNS</th>
+                    </tr>
+                    <tr>
+                        <td>北京</td>
+                        <td><span class="copyable">240e:1a:1::1</span> <span class="copyable">240e:1a:1::2</span></td>
+                    </tr>
+                    <tr>
+                        <td>天津</td>
+                        <td><span class="copyable">240e:4:4000::1</span> <span class="copyable">240e:4:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>河北</td>
+                        <td><span class="copyable">240c::6666</span> <span class="copyable">240c::6644</span></td>
+                    </tr>
+                    <tr>
+                        <td>山西</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>内蒙古</td>
+                        <td><span class="copyable">240e:1c8:4000::1</span> <span
+                                class="copyable">240e:1c8:4000::2</span></td>
+                    </tr>
+                    <tr>
+                        <td>辽宁</td>
+                        <td><span class="copyable">240e:1c4:4000::1</span> <span
+                                class="copyable">240e:1c4:4000::2</span></td>
+                    </tr>
+                    <tr>
+                        <td>吉林</td>
+                        <td><span class="copyable">240e:1c0:4000::1</span> <span
+                                class="copyable">240e:1c0:4000::2</span></td>
+                    </tr>
+                    <tr>
+                        <td>黑龙江</td>
+                        <td><span class="copyable">240e:1c4:4000::1</span> <span
+                                class="copyable">240e:1c4:4000::2</span></td>
+                    </tr>
+                    <tr>
+                        <td>上海</td>
+                        <td><span class="copyable">240e:18c:0:400::6</span> <span
+                                class="copyable">240e:18c:0:400::7</span></td>
+                    </tr>
+                    <tr>
+                        <td>江苏</td>
+                        <td><span class="copyable">240e:4c:4000::1</span> <span class="copyable">240e:4c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>浙江</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>安徽</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>福建</td>
+                        <td><span class="copyable">240e:18c:0:400::6</span> <span
+                                class="copyable">240e:18c:0:400::7</span></td>
+                    </tr>
+                    <tr>
+                        <td>江西</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>山东</td>
+                        <td><span class="copyable">2400:3200::1</span></td>
+                    </tr>
+                    <tr>
+                        <td>河南</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>湖北</td>
+                        <td><span class="copyable">240e:8c:0:400::6</span> <span
+                                class="copyable">240e:8c:0:400::7</span></td>
+                    </tr>
+                    <tr>
+                        <td>湖南</td>
+                        <td><span class="copyable">240e:8c:0:400::6</span> <span
+                                class="copyable">240e:8c:0:400::7</span></td>
+                    </tr>
+                    <tr>
+                        <td>广东</td>
+                        <td><span class="copyable">240e:4c:4000::1</span> <span class="copyable">240e:4c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>广西</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>海南</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>重庆</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>四川</td>
+                        <td><span class="copyable">240e:18c:0:400::6</span> <span
+                                class="copyable">240e:18c:0:400::7</span></td>
+                    </tr>
+                    <tr>
+                        <td>贵州</td>
+                        <td><span class="copyable">240e:1c4:4000::1</span> <span
+                                class="copyable">240e:1c4:4000::2</span></td>
+                    </tr>
+                    <tr>
+                        <td>云南</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>西藏</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>陕西</td>
+                        <td><span class="copyable">240e:1c0:4000::1</span> <span
+                                class="copyable">240e:1c0:4000::2</span></td>
+                    </tr>
+                    <tr>
+                        <td>甘肃</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>青海</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>宁夏</td>
+                        <td><span class="copyable">240e:1c:4000::1</span> <span class="copyable">240e:1c:4000::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>新疆</td>
+                        <td><span class="copyable">240e:1c8:4000::1</span> <span
+                                class="copyable">240e:1c8:4000::2</span></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="margin-bottom:1.2em;">
+                <b style="color:var(--main-color);font-size:1.08em;">中国联通</b>
+                <table class="dns-table">
+                    <tr>
+                        <th>省份</th>
+                        <th>IPv6 DNS</th>
+                    </tr>
+                    <tr>
+                        <td>北京</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>天津</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>河北</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>山西</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>内蒙古</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>辽宁</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>吉林</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>黑龙江</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>上海</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>江苏</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>浙江</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>安徽</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>福建</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>江西</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>山东</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>河南</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>湖北</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>湖南</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>广东</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>广西</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>海南</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>重庆</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>四川</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>贵州</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>云南</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>西藏</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>陕西</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>甘肃</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>青海</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>宁夏</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>新疆</td>
+                        <td><span class="copyable">2408:8000:1::1</span> <span class="copyable">2408:8000:1::2</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <b style="color:var(--main-color);font-size:1.08em;">中国移动</b>
+                <table class="dns-table">
+                    <tr>
+                        <th>省份</th>
+                        <th>IPv6 DNS</th>
+                    </tr>
+                    <tr>
+                        <td>北京</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>天津</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>河北</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>山西</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>内蒙古</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>辽宁</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>吉林</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>黑龙江</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>上海</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>江苏</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>浙江</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>安徽</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>福建</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>江西</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>山东</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>河南</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>湖北</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>湖南</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>广东</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>广西</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>海南</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>重庆</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>四川</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>贵州</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>云南</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>西藏</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>陕西</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>甘肃</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>青海</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>宁夏</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                    <tr>
+                        <td>新疆</td>
+                        <td><span class="copyable">2409:8087::a</span> <span class="copyable">2409:8087::b</span></td>
+                    </tr>
+                </table>
+            </div>
         </div>
         <div class="card" id="ctcc-dns">
             <h2>中国电信各省 DNS</h2>
