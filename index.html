@@ -1,42 +1,910 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TVLive 欢迎页</title>
-  <!-- Bootstrap 最新版 CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>免费公共 DNS 服务器大全</title>
+    <style>
+        :root {
+            --main-color: #2563eb;
+            --bg-color: #f4f6fa;
+            --card-bg: #fff;
+            --border-radius: 16px;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --text-color: #222;
+            --sub-text: #666;
+            --accent: #f59e42;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            background: var(--main-color);
+            color: #fff;
+            padding: 2rem 1rem 1rem 1rem;
+            text-align: center;
+            border-bottom-left-radius: 32px;
+            border-bottom-right-radius: 32px;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 1rem;
+            color: #e0e7ef;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+            padding: 1.2rem 1rem;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: var(--main-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .dns-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.5rem;
+        }
+
+        .dns-table th,
+        .dns-table td {
+            padding: 0.5rem 0.3rem;
+            text-align: left;
+            font-size: 0.98rem;
+        }
+
+        .dns-table th {
+            color: var(--main-color);
+            font-weight: 600;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .dns-table tr:not(:last-child) td {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            border-radius: 8px;
+            padding: 0.1rem 0.6rem;
+            font-size: 0.85em;
+            margin-right: 0.3em;
+            margin-bottom: 0.2em;
+        }
+
+        .ip-status {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .ip-box {
+            background: #e0e7ef;
+            border-radius: 10px;
+            padding: 0.7rem 1.2rem;
+            min-width: 120px;
+            text-align: center;
+            color: var(--main-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .ip-label {
+            font-size: 0.9rem;
+            color: var(--sub-text);
+            margin-bottom: 0.2rem;
+            display: block;
+        }
+
+        .sponsor-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 1rem auto 0 auto;
+            cursor: pointer;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+            transition: background 0.2s;
+        }
+
+        .sponsor-btn:hover {
+            background: #f7b86a;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.3rem;
+            }
+
+            .container {
+                padding: 0 0.2rem;
+            }
+
+            .card {
+                padding: 1rem 0.5rem;
+            }
+
+            .ip-status {
+                gap: 0.5rem;
+            }
+
+            .ip-box {
+                min-width: 90px;
+                font-size: 0.98rem;
+            }
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+            border-radius: 0 0 18px 18px;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            overflow-x: auto;
+        }
+
+        .nav-bar a {
+            color: var(--main-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.4rem 1rem;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-bar a:hover,
+        .nav-bar a:focus {
+            background: var(--main-color);
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .nav-bar {
+                font-size: 0.95rem;
+                gap: 0.2rem;
+                padding: 0.3rem 0.1rem;
+            }
+
+            .nav-bar a {
+                padding: 0.3rem 0.7rem;
+                font-size: 0.98rem;
+            }
+        }
+
+        .dns-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .dns-item {
+            background: #f8fafc;
+            border-radius: 12px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+            padding: 0.7rem 1rem 0.7rem 1rem;
+            font-size: 1rem;
+            word-break: break-all;
+        }
+
+        .dns-name {
+            font-weight: bold;
+            color: var(--main-color);
+            margin-bottom: 0.2em;
+            font-size: 1.08em;
+        }
+
+        .copyable {
+            user-select: all;
+            cursor: pointer;
+            background: #e0e7ef;
+            border-radius: 5px;
+            padding: 0 0.2em;
+            margin-left: 0.2em;
+            font-family: monospace;
+            font-size: 0.98em;
+        }
+
+        @media (max-width: 600px) {
+            .dns-item {
+                font-size: 0.98rem;
+                padding: 0.6rem 0.5rem;
+            }
+
+            .dns-list {
+                gap: 0.7rem;
+            }
+        }
+    </style>
 </head>
-<body class="bg-light d-flex align-items-center min-vh-100">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-lg-6">
-        <div class="card shadow-lg">
-          <div class="card-body p-5">
-            <h1 class="card-title text-center mb-4">欢迎使用 TVLive</h1>
-            <div class="alert alert-warning" role="alert">
-              <strong>使用声明：</strong><br>
-              欢迎使用。在开始使用前，请您了解并同意以下条款：<br><br>
-              <strong>服务性质：</strong> 仅提供视频搜索服务，不直接提供、存储或上传任何视频内容。所有搜索结果均来自第三方公开接口。<br>
-              <strong>用户责任：</strong> 用户在使用本站服务时，须遵守相关法律法规，不得利用搜索结果从事侵权行为，如下载、传播未经授权的作品等。<br>
-              <strong>广告风险提示：</strong> 本站所有视频均来自第三方采集站，视频中出现的广告与本站无关，请勿相信或点击视频中的任何广告内容，谨防上当受骗。
+
+<body>
+    <header>
+        <h1>免费公共 DNS 服务器大全</h1>
+        <p>收集全球主流公共 DNS 服务器，支持 IPv4/IPv6/DoT/DoH，适合中国大陆及海外用户。</p>
+    </header>
+    <nav class="nav-bar">
+        <a href="#china-dns">国内DNS</a>
+        <a href="#world-dns">国外DNS</a>
+        <a href="#isp-dns">各省运营商</a>
+        <a href="#ctcc-dns">电信DNS</a>
+        <a href="#cucc-dns">联通DNS</a>
+        <a href="#cmcc-dns">移动DNS</a>
+        <a href="#global-dns">海外DNS</a>
+        <a href="#edu-dns">教育网DNS</a>
+        <a href="#dns-knowledge">DNS知识</a>
+        <a href="#sponsor">赞助</a>
+    </nav>
+    <div class="container">
+        <div class="card" id="ip-status">
+            <h2>当前 IP 状态</h2>
+            <div class="ip-status">
+                <div class="ip-box">
+                    <span class="ip-label">IPv4</span>
+                    <span id="ipv4-status">检测中…</span>
+                </div>
+                <div class="ip-box">
+                    <span class="ip-label">IPv6</span>
+                    <span id="ipv6-status">检测中…</span>
+                </div>
             </div>
-            <div class="d-grid gap-2 mt-4">
-              <button id="agreeBtn" class="btn btn-primary btn-lg" type="button">我已了解并接受</button>
+            <div class="ip-more" style="text-align:center;margin-top:0.7em;color:var(--sub-text);font-size:1em;">
+                <span id="ip-location">地区：检测中…</span> <span id="ip-isp" style="margin-left:1.5em;">运营商：检测中…</span>
             </div>
-          </div>
         </div>
-        <footer class="text-center mt-4 text-muted small">
-          &copy; 2025 TVLive. 保留所有权利。
-        </footer>
-      </div>
+        <div class="card" id="china-dns">
+            <h2>国内知名 DNS</h2>
+            <div class="dns-list">
+                <div class="dns-item">
+                    <div class="dns-name">腾讯 DNSPod</div>
+                    <div><b>IPv4:</b> <span class="copyable">119.29.29.29</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2402:4e00::</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dot.pub</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://doh.pub/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">阿里 DNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">223.5.5.5</span> <span class="copyable">223.6.6.6</span>
+                    </div>
+                    <div><b>IPv6:</b> <span class="copyable">2400:3200::1</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dns.alidns.com</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://dns.alidns.com/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">百度 DNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">180.76.76.76</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">360 安全 DNS（电信/铁通/移动）</div>
+                    <div><b>IPv4:</b> <span class="copyable">101.226.4.6</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dot.360.cn</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://doh.360.cn/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">360 安全 DNS（联通）</div>
+                    <div><b>IPv4:</b> <span class="copyable">123.125.81.6</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dot.360.cn</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://doh.360.cn/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">114DNS 纯净版</div>
+                    <div><b>IPv4:</b> <span class="copyable">114.114.114.114</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">114DNS 安全版</div>
+                    <div><b>IPv4:</b> <span class="copyable">114.114.115.115</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">114DNS 家庭版</div>
+                    <div><b>IPv4:</b> <span class="copyable">114.114.114.119</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">CNNIC DNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">1.2.4.8</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">OneDNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">117.50.11.11</span> <span
+                            class="copyable">52.80.66.66</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">240c::6666</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dot.onedns.net</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://doh.onedns.net/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">澳门电讯 CTM</div>
+                    <div><b>IPv4:</b> <span class="copyable">202.175.3.8</span> <span
+                            class="copyable">202.175.3.3</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="card" id="world-dns">
+            <h2>国外知名 DNS</h2>
+            <div class="dns-list">
+                <div class="dns-item">
+                    <div class="dns-name">Google Public DNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">8.8.8.8</span> <span class="copyable">8.8.4.4</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2001:4860:4860::8888</span> <span
+                            class="copyable">2001:4860:4860::8844</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dns.google</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://dns.google/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">Cloudflare DNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">1.1.1.1</span> <span class="copyable">1.0.0.1</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2606:4700:4700::1111</span> <span
+                            class="copyable">2606:4700:4700::1001</span></div>
+                    <div><b>DoT:</b> <span class="copyable">cloudflare-dns.com</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://cloudflare-dns.com/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">Quad9 DNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">9.9.9.9</span> <span
+                            class="copyable">149.112.112.112</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2620:fe::fe</span> <span class="copyable">2620:fe::9</span>
+                    </div>
+                    <div><b>DoT:</b> <span class="copyable">dns.quad9.net</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://dns.quad9.net/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">OpenDNS (Cisco Umbrella)</div>
+                    <div><b>IPv4:</b> <span class="copyable">208.67.222.222</span> <span
+                            class="copyable">208.67.220.220</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2620:119:35::35</span> <span
+                            class="copyable">2620:119:53::53</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://doh.opendns.com/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">DNS.SB</div>
+                    <div><b>IPv4:</b> <span class="copyable">185.222.222.222</span> <span
+                            class="copyable">45.11.45.11</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2a09:bac1:fffe::1</span> <span
+                            class="copyable">2a09:bac1:fffe::2</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dns.sb</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://doh.dns.sb/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">Yandex DNS（基础版）</div>
+                    <div><b>IPv4:</b> <span class="copyable">77.88.8.8</span> <span class="copyable">77.88.8.1</span>
+                    </div>
+                    <div><b>IPv6:</b> <span class="copyable">2a02:6b8::feed:0ff</span> <span
+                            class="copyable">2a02:6b8:0:1::feed:0ff</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dns.yandex.net</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://dns.yandex.net/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">AdGuard DNS（默认）</div>
+                    <div><b>IPv4:</b> <span class="copyable">94.140.14.14</span> <span
+                            class="copyable">94.140.15.15</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2a10:50c0::ad1:ff</span> <span
+                            class="copyable">2a10:50c0::ad2:ff</span></div>
+                    <div><b>DoT:</b> <span class="copyable">dns.adguard.com</span></div>
+                    <div><b>DoH:</b> <span class="copyable">https://dns.adguard.com/dns-query</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">Neustar UltraDNS（基础版）</div>
+                    <div><b>IPv4:</b> <span class="copyable">156.154.70.1</span> <span
+                            class="copyable">156.154.71.1</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2610:a1:1018::1</span> <span
+                            class="copyable">2610:a1:1019::1</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">COMODO SecureDNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">8.26.56.26</span> <span class="copyable">8.20.247.20</span>
+                    </div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">Freenom World DNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">80.80.80.80</span> <span
+                            class="copyable">80.80.81.81</span></div>
+                    <div><b>IPv6:</b> <span class="copyable">2001:67c:28a4::</span> <span
+                            class="copyable">2a02:2770:1002::</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="card" id="isp-dns">
+            <h2>各省运营商 DNS</h2>
+            <table class="dns-table">
+                <tr>
+                    <th>省份/运营商</th>
+                    <th>IPv6</th>
+                </tr>
+                <tr>
+                    <td>河北电信</td>
+                    <td>240c::6666 / 240c::6644</td>
+                </tr>
+                <tr>
+                    <td>广东电信</td>
+                    <td>240e:4c:4000::1 / 240e:4c:4000::2</td>
+                </tr>
+                <tr>
+                    <td>山东电信</td>
+                    <td>2400:3200::1</td>
+                </tr>
+                <tr>
+                    <td>四川电信</td>
+                    <td>240e:18c:0:400::6 / 240e:18c:0:400::7</td>
+                </tr>
+                <tr>
+                    <td>湖北电信</td>
+                    <td>240e:8c:0:400::6 / 240e:8c:0:400::7</td>
+                </tr>
+                <tr>
+                    <td>陕西电信</td>
+                    <td>240e:1c0:4000::1 / 240e:1c0:4000::2</td>
+                </tr>
+                <tr>
+                    <td>安徽电信</td>
+                    <td>240e:1c:4000::1 / 240e:1c:4000::2</td>
+                </tr>
+                <tr>
+                    <td>贵州电信</td>
+                    <td>240e:1c4:4000::1 / 240e:1c4:4000::2</td>
+                </tr>
+                <tr>
+                    <td>天津电信</td>
+                    <td>240e:4:4000::1 / 240e:4:4000::2</td>
+                </tr>
+                <tr>
+                    <td>新疆电信</td>
+                    <td>240e:1c8:4000::1 / 240e:1c8:4000::2</td>
+                </tr>
+                <tr>
+                    <td>广西电信</td>
+                    <td>240e:1c:4000::1 / 240e:1c:4000::2</td>
+                </tr>
+                <tr>
+                    <td>江苏移动</td>
+                    <td>2409:8087::a / 2409:8087::b</td>
+                </tr>
+                <tr>
+                    <td>广西移动</td>
+                    <td>2409:8c44:4000::1 / 2409:8c44:4000::2</td>
+                </tr>
+                <tr>
+                    <td>湖北移动</td>
+                    <td>2409:8c10:4000::1 / 2409:8c10:4000::2</td>
+                </tr>
+                <tr>
+                    <td>湖南移动</td>
+                    <td>2409:8c20:4000::1 / 2409:8c20:4000::2</td>
+                </tr>
+                <tr>
+                    <td>甘肃移动</td>
+                    <td>2409:8c30:4000::1 / 2409:8c30:4000::2</td>
+                </tr>
+                <tr>
+                    <td>辽宁移动</td>
+                    <td>2409:8c40:4000::1 / 2409:8c40:4000::2</td>
+                </tr>
+                <tr>
+                    <td>浙江移动</td>
+                    <td>2409:8c50:4000::1 / 2409:8c50:4000::2</td>
+                </tr>
+            </table>
+        </div>
+        <div class="card" id="ctcc-dns">
+            <h2>中国电信各省 DNS</h2>
+            <table class="dns-table">
+                <tr>
+                    <th>省份</th>
+                    <th>首选 DNS</th>
+                    <th>备用 DNS</th>
+                </tr>
+                <tr>
+                    <td>安徽电信</td>
+                    <td>61.132.163.68</td>
+                    <td>202.102.213.68</td>
+                </tr>
+                <tr>
+                    <td>北京电信</td>
+                    <td>219.142.76.3</td>
+                    <td>219.141.140.10</td>
+                </tr>
+                <tr>
+                    <td>重庆电信</td>
+                    <td>61.128.192.68</td>
+                    <td>61.128.128.68</td>
+                </tr>
+                <tr>
+                    <td>福建电信</td>
+                    <td>218.85.152.99</td>
+                    <td>218.85.157.99</td>
+                </tr>
+                <tr>
+                    <td>甘肃电信</td>
+                    <td>202.100.64.68</td>
+                    <td>61.178.0.93</td>
+                </tr>
+                <tr>
+                    <td>广东电信</td>
+                    <td>202.96.128.86</td>
+                    <td>202.96.128.166</td>
+                </tr>
+                <tr>
+                    <td>广西电信</td>
+                    <td>202.103.225.68</td>
+                    <td>202.103.224.68</td>
+                </tr>
+                <tr>
+                    <td>贵州电信</td>
+                    <td>202.98.192.67</td>
+                    <td>202.98.198.167</td>
+                </tr>
+                <tr>
+                    <td>河南电信</td>
+                    <td>222.88.88.88</td>
+                    <td>222.85.85.85</td>
+                </tr>
+                <tr>
+                    <td>黑龙江电信</td>
+                    <td>219.147.198.230</td>
+                    <td>219.147.198.242</td>
+                </tr>
+                <tr>
+                    <td>湖北电信</td>
+                    <td>202.103.24.68</td>
+                    <td>202.103.0.68</td>
+                </tr>
+                <tr>
+                    <td>湖南电信</td>
+                    <td>222.246.129.80</td>
+                    <td>59.51.78.211</td>
+                </tr>
+                <tr>
+                    <td>江苏电信</td>
+                    <td>218.2.2.2</td>
+                    <td>218.4.4.4</td>
+                </tr>
+                <tr>
+                    <td>江西电信</td>
+                    <td>202.101.224.69</td>
+                    <td>202.101.226.68</td>
+                </tr>
+                <tr>
+                    <td>内蒙古电信</td>
+                    <td>219.148.162.31</td>
+                    <td>222.74.39.50</td>
+                </tr>
+                <tr>
+                    <td>山东电信</td>
+                    <td>219.146.1.66</td>
+                    <td>219.147.1.66</td>
+                </tr>
+                <tr>
+                    <td>陕西电信</td>
+                    <td>218.30.19.40</td>
+                    <td>61.134.1.4</td>
+                </tr>
+                <tr>
+                    <td>上海电信</td>
+                    <td>202.96.209.133</td>
+                    <td>116.228.111.118</td>
+                </tr>
+                <tr>
+                    <td>四川电信</td>
+                    <td>61.139.2.69</td>
+                    <td>218.6.200.139</td>
+                </tr>
+                <tr>
+                    <td>天津电信</td>
+                    <td>219.150.32.132</td>
+                    <td>219.146.0.132</td>
+                </tr>
+                <tr>
+                    <td>云南电信</td>
+                    <td>222.172.200.68</td>
+                    <td>61.166.150.123</td>
+                </tr>
+                <tr>
+                    <td>浙江电信</td>
+                    <td>202.101.172.35</td>
+                    <td>61.153.177.196</td>
+                </tr>
+                <tr>
+                    <td>西藏电信</td>
+                    <td>202.98.224.68</td>
+                    <td>202.98.224.69</td>
+                </tr>
+            </table>
+        </div>
+        <div class="card" id="cucc-dns">
+            <h2>中国联通各省 DNS</h2>
+            <table class="dns-table">
+                <tr>
+                    <th>省份</th>
+                    <th>首选 DNS</th>
+                    <th>备用 DNS</th>
+                </tr>
+                <tr>
+                    <td>北京联通</td>
+                    <td>123.123.123.123</td>
+                    <td>123.123.123.124</td>
+                </tr>
+                <tr>
+                    <td>重庆联通</td>
+                    <td>221.5.203.98</td>
+                    <td>221.7.92.98</td>
+                </tr>
+                <tr>
+                    <td>广东联通</td>
+                    <td>210.21.196.6</td>
+                    <td>221.5.88.88</td>
+                </tr>
+                <tr>
+                    <td>河北联通</td>
+                    <td>202.99.160.68</td>
+                    <td>202.99.166.4</td>
+                </tr>
+                <tr>
+                    <td>河南联通</td>
+                    <td>202.102.224.68</td>
+                    <td>202.102.227.68</td>
+                </tr>
+                <tr>
+                    <td>黑龙江联通</td>
+                    <td>202.97.224.69</td>
+                    <td>202.97.224.68</td>
+                </tr>
+                <tr>
+                    <td>吉林联通</td>
+                    <td>202.98.0.68</td>
+                    <td>202.98.5.68</td>
+                </tr>
+                <tr>
+                    <td>江苏联通</td>
+                    <td>221.6.4.66</td>
+                    <td>221.6.4.67</td>
+                </tr>
+                <tr>
+                    <td>内蒙古联通</td>
+                    <td>202.99.224.68</td>
+                    <td>202.99.224.8</td>
+                </tr>
+                <tr>
+                    <td>山东联通</td>
+                    <td>202.102.128.68</td>
+                    <td>202.102.152.3</td>
+                </tr>
+                <tr>
+                    <td>山西联通</td>
+                    <td>202.99.192.66</td>
+                    <td>202.99.192.68</td>
+                </tr>
+                <tr>
+                    <td>陕西联通</td>
+                    <td>221.11.1.67</td>
+                    <td>221.11.1.68</td>
+                </tr>
+                <tr>
+                    <td>上海联通</td>
+                    <td>210.22.70.3</td>
+                    <td>210.22.84.3</td>
+                </tr>
+                <tr>
+                    <td>四川联通</td>
+                    <td>119.6.6.6</td>
+                    <td>124.161.87.155</td>
+                </tr>
+                <tr>
+                    <td>天津联通</td>
+                    <td>202.99.104.68</td>
+                    <td>202.99.96.68</td>
+                </tr>
+                <tr>
+                    <td>浙江联通</td>
+                    <td>221.12.1.227</td>
+                    <td>221.12.33.227</td>
+                </tr>
+                <tr>
+                    <td>辽宁联通</td>
+                    <td>202.96.69.38</td>
+                    <td>202.96.64.68</td>
+                </tr>
+            </table>
+        </div>
+        <div class="card" id="cmcc-dns">
+            <h2>中国移动各省 DNS</h2>
+            <table class="dns-table">
+                <tr>
+                    <th>省份</th>
+                    <th>首选 DNS</th>
+                    <th>备用 DNS</th>
+                </tr>
+                <tr>
+                    <td>北京移动</td>
+                    <td>221.130.33.60</td>
+                    <td>221.130.33.52</td>
+                </tr>
+                <tr>
+                    <td>广东移动</td>
+                    <td>211.136.192.6</td>
+                    <td>211.139.136.68</td>
+                </tr>
+                <tr>
+                    <td>江苏移动</td>
+                    <td>221.131.143.69</td>
+                    <td>112.4.0.55</td>
+                </tr>
+                <tr>
+                    <td>安徽移动</td>
+                    <td>211.138.180.2</td>
+                    <td>211.138.180.3</td>
+                </tr>
+                <tr>
+                    <td>山东移动</td>
+                    <td>218.201.96.130</td>
+                    <td>211.137.191.26</td>
+                </tr>
+            </table>
+        </div>
+        <div class="card" id="global-dns">
+            <h2>海外主流 DNS</h2>
+            <table class="dns-table">
+                <tr>
+                    <th>名称</th>
+                    <th>IPv4</th>
+                    <th>IPv6</th>
+                    <th>DoT</th>
+                    <th>DoH</th>
+                </tr>
+                <tr>
+                    <td>Google DNS</td>
+                    <td>8.8.8.8</td>
+                    <td>2001:4860:4860::8888</td>
+                    <td>dns.google</td>
+                    <td>https://dns.google/dns-query</td>
+                </tr>
+                <tr>
+                    <td>Cloudflare</td>
+                    <td>1.1.1.1</td>
+                    <td>2606:4700:4700::1111</td>
+                    <td>cloudflare-dns.com</td>
+                    <td>https://cloudflare-dns.com/dns-query</td>
+                </tr>
+                <tr>
+                    <td>Quad9</td>
+                    <td>9.9.9.9</td>
+                    <td>2620:fe::fe</td>
+                    <td>dns.quad9.net</td>
+                    <td>https://dns.quad9.net/dns-query</td>
+                </tr>
+                <tr>
+                    <td>OpenDNS</td>
+                    <td>208.67.222.222</td>
+                    <td>2620:119:35::35</td>
+                    <td>—</td>
+                    <td>https://doh.opendns.com/dns-query</td>
+                </tr>
+            </table>
+        </div>
+        <div class="card" id="edu-dns">
+            <h2>教育网 DNS</h2>
+            <table class="dns-table">
+                <tr>
+                    <th>名称</th>
+                    <th>IPv4</th>
+                    <th>IPv6</th>
+                    <th>DoT</th>
+                    <th>DoH</th>
+                </tr>
+                <tr>
+                    <td>CERNET</td>
+                    <td>202.112.20.131</td>
+                    <td>2001:da8::666</td>
+                    <td>—</td>
+                    <td>—</td>
+                </tr>
+            </table>
+        </div>
+        <div class="card" id="dns-knowledge">
+            <h2>DNS 知识</h2>
+            <ul style="color:var(--sub-text);font-size:0.98rem;line-height:1.7;">
+                <li><b>DNS</b>（域名系统）用于将域名解析为 IP 地址。</li>
+                <li><b>DoT</b>（DNS over TLS）和 <b>DoH</b>（DNS over HTTPS）是加密 DNS 查询的协议，提升安全性和隐私。</li>
+                <li>推荐根据网络环境选择合适的 DNS，国内建议优先用国内 DNS，海外可选 Google/Cloudflare 等。</li>
+                <li>如遇 DNS 污染、劫持等问题，可尝试更换为 DoT/DoH。</li>
+            </ul>
+        </div>
+        <div class="card" id="sponsor" style="text-align:center;">
+            <button class="sponsor-btn" onclick="window.open('https://buymeacoffee.com/', '_blank')">赞助本站</button>
+        </div>
     </div>
-  </div>
-  <script>
-    document.getElementById('agreeBtn').addEventListener('click', function() {
-      window.location.href = '/app.html';
-    });
-  </script>
+    <script>
+        // IPv4 检测
+        fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => {
+            document.getElementById('ipv4-status').textContent = d.ip;
+        }).catch(() => {
+            document.getElementById('ipv4-status').textContent = '×';
+        });
+        // IPv6 检测
+        fetch('https://api64.ipify.org?format=json').then(r => r.json()).then(d => {
+            document.getElementById('ipv6-status').textContent = d.ip;
+        }).catch(() => {
+            document.getElementById('ipv6-status').textContent = '×';
+        });
+        // 获取地区和运营商（优先IPv6，否则IPv4）
+        (async function () {
+            let ip = '';
+            try {
+                // 先尝试获取IPv6
+                let v6 = await fetch('https://api64.ipify.org?format=json').then(r => r.json()).then(d => d.ip).catch(() => null);
+                if (v6 && v6.indexOf(':') > -1) ip = v6;
+                else ip = await fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip);
+            } catch (e) { }
+            if (!ip) {
+                document.getElementById('ip-location').textContent = '地区：×';
+                document.getElementById('ip-isp').textContent = '运营商：×';
+                return;
+            }
+            fetch('https://ip9.com.cn/get?ip=' + encodeURIComponent(ip)).then(r => r.json()).then(res => {
+                if (res.ret === 200 && res.data) {
+                    const d = res.data;
+                    document.getElementById('ip-location').textContent = '地区：' + (d.country || '') + (d.prov ? ' ' + d.prov : '') + (d.city ? ' ' + d.city : '');
+                    document.getElementById('ip-isp').textContent = '运营商：' + (d.isp || '');
+                } else {
+                    document.getElementById('ip-location').textContent = '地区：×';
+                    document.getElementById('ip-isp').textContent = '运营商：×';
+                }
+            }).catch(() => {
+                document.getElementById('ip-location').textContent = '地区：×';
+                document.getElementById('ip-isp').textContent = '运营商：×';
+            });
+        })();
+        // 平滑滚动
+        document.querySelectorAll('.nav-bar a').forEach(a => {
+            a.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const el = document.querySelector(href);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
