@@ -331,6 +331,20 @@
                 font-size: 0.99em;
             }
         }
+
+        .dns-recommend {
+            display: inline-block;
+            background: #e53935;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 0.08em 0.7em;
+            font-size: 0.92em;
+            margin-left: 0.5em;
+            box-shadow: 0 2px 8px rgba(229, 57, 53, 0.10);
+            letter-spacing: 1px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -353,15 +367,8 @@
     <div class="container">
         <div class="card" id="ip-status">
             <h2>当前 IP 状态</h2>
-            <div class="ip-status">
-                <div class="ip-box">
-                    <span class="ip-label">IPv4</span>
-                    <span id="ipv4-status">检测中…</span>
-                </div>
-                <div class="ip-box">
-                    <span class="ip-label">IPv6</span>
-                    <span id="ipv6-status">检测中…</span>
-                </div>
+            <div class="ip-status" id="ip-status-boxes">
+                <!-- 动态插入IP盒子 -->
             </div>
             <div class="ip-more" style="text-align:center;margin-top:0.7em;color:var(--sub-text);font-size:1em;">
                 <span id="ip-location">地区：检测中…</span> <span id="ip-isp" style="margin-left:1.5em;">运营商：检测中…</span>
@@ -1167,18 +1174,45 @@
         免费公共DNS服务器大全（dns大全），收录全球主流权威DNS服务器，包括中国、海外、教育网、各省运营商、IPv6/IPv4/DoT/DoH等类型，权威数据实时更新，适合网络优化、加速、隐私保护和安全使用，是最全的dns大全权威查询平台。
     </div>
     <script>
-        // IPv4 检测
-        fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => {
-            document.getElementById('ipv4-status').textContent = d.ip;
-        }).catch(() => {
-            document.getElementById('ipv4-status').textContent = '×';
-        });
-        // IPv6 检测
-        fetch('https://api64.ipify.org?format=json').then(r => r.json()).then(d => {
-            document.getElementById('ipv6-status').textContent = d.ip;
-        }).catch(() => {
-            document.getElementById('ipv6-status').textContent = '×';
-        });
+        // 动态检测并显示IPv4/IPv6
+        function createIpBox(label, id, ip) {
+            var box = document.createElement('div');
+            box.className = 'ip-box';
+            var labelSpan = document.createElement('span');
+            labelSpan.className = 'ip-label';
+            labelSpan.textContent = label;
+            var ipSpan = document.createElement('span');
+            ipSpan.id = id;
+            ipSpan.textContent = ip;
+            box.appendChild(labelSpan);
+            box.appendChild(document.createElement('br'));
+            box.appendChild(ipSpan);
+            return box;
+        }
+        (function () {
+            var ipStatusBoxes = document.getElementById('ip-status-boxes');
+            var v4ok = false, v6ok = false;
+            // 检测IPv4
+            fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => {
+                if (d.ip && d.ip.indexOf(':') === -1) {
+                    v4ok = true;
+                    ipStatusBoxes.appendChild(createIpBox('IPv4', 'ipv4-status', d.ip));
+                }
+            }).catch(() => { });
+            // 检测IPv6
+            fetch('https://api64.ipify.org?format=json').then(r => r.json()).then(d => {
+                if (d.ip && d.ip.indexOf(':') !== -1) {
+                    v6ok = true;
+                    ipStatusBoxes.appendChild(createIpBox('IPv6', 'ipv6-status', d.ip));
+                }
+            }).catch(() => { });
+            // 超时兜底，若都无则显示"无可用IP"
+            setTimeout(function () {
+                if (!ipStatusBoxes.hasChildNodes()) {
+                    ipStatusBoxes.appendChild(createIpBox('IP', 'ip-status-none', '×'));
+                }
+            }, 1500);
+        })();
         // 获取地区和运营商
         fetch('https://ipapi.co/json/').then(r => r.json()).then(d => {
             document.getElementById('ip-location').textContent = '地区：' + (d.country_name || '') + (d.region ? ' ' + d.region : '') + (d.city ? ' ' + d.city : '');
@@ -1200,6 +1234,8 @@
         });
         // DNS有效性检测（仅DoH）
         function checkDoHStatus(id, url) {
+            const statusDiv = document.getElementById(id);
+            const valueSpan = statusDiv ? statusDiv.querySelector('.dns-status-value') : null;
             fetch(url + '?name=www.baidu.com&type=A', {
                 method: 'GET',
                 headers: { 'accept': 'application/dns-json' },
@@ -1207,22 +1243,17 @@
                 if (!res.ok) throw new Error('HTTP error');
                 return res.json();
             }).then(data => {
-                const el = document.querySelector('#' + id + ' .dns-status-value');
                 if (data.Answer && data.Answer.length > 0) {
-                    el.textContent = '有效';
-                    el.classList.add('dns-ok');
+                    if (valueSpan) {
+                        valueSpan.textContent = '有效';
+                        valueSpan.classList.add('dns-ok');
+                        statusDiv.style.display = '';
+                    }
                 } else {
-                    el.textContent = '无效';
-                    el.classList.add('dns-fail');
+                    if (statusDiv) statusDiv.style.display = 'none';
                 }
             }).catch(e => {
-                const el = document.querySelector('#' + id + ' .dns-status-value');
-                if (e instanceof TypeError) {
-                    el.textContent = '无法前端检测（CORS限制）';
-                } else {
-                    el.textContent = '未知';
-                }
-                el.classList.add('dns-fail');
+                if (statusDiv) statusDiv.style.display = 'none';
             });
         }
         checkDoHStatus('dns-status-dnspod', 'https://doh.pub/dns-query');
