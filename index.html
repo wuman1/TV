@@ -14,8 +14,8 @@
             --main-color: #2563eb;
             --bg-color: #f4f6fa;
             --card-bg: #fff;
-            --border-radius: 16px;
-            --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --border-radius: 18px;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
             --text-color: #222;
             --sub-text: #666;
             --accent: #f59e42;
@@ -31,63 +31,75 @@
         header {
             background: var(--main-color);
             color: #fff;
-            padding: 2rem 1rem 1rem 1rem;
+            padding: 2.2rem 1rem 1.2rem 1rem;
             text-align: center;
-            border-bottom-left-radius: 32px;
-            border-bottom-right-radius: 32px;
+            border-bottom-left-radius: 36px;
+            border-bottom-right-radius: 36px;
             box-shadow: var(--shadow);
         }
 
         header h1 {
-            margin: 0 0 0.5rem 0;
-            font-size: 2rem;
+            margin: 0 0 0.7rem 0;
+            font-size: 2.2rem;
             letter-spacing: 2px;
+            font-weight: 700;
         }
 
         header p {
             margin: 0;
-            font-size: 1rem;
+            font-size: 1.08rem;
             color: #e0e7ef;
         }
 
         .container {
-            max-width: 700px;
-            margin: 1.5rem auto;
-            padding: 0 1rem;
+            max-width: 750px;
+            margin: 1.7rem auto;
+            padding: 0 1.1rem;
         }
 
         .card {
             background: var(--card-bg);
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            margin-bottom: 1.5rem;
-            padding: 1.2rem 1rem;
+            margin-bottom: 1.7rem;
+            padding: 1.3rem 1.1rem;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:active,
+        .card:focus-within {
+            box-shadow: 0 6px 24px rgba(37, 99, 235, 0.10);
         }
 
         .card h2 {
             margin-top: 0;
-            font-size: 1.2rem;
+            font-size: 1.22rem;
             color: var(--main-color);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
         }
 
         .dns-table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0 0.2rem;
             margin-bottom: 0.5rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            overflow: hidden;
         }
 
         .dns-table th,
         .dns-table td {
-            padding: 0.5rem 0.3rem;
+            padding: 0.55rem 0.3rem;
             text-align: left;
-            font-size: 0.98rem;
+            font-size: 1.01rem;
         }
 
         .dns-table th {
             color: var(--main-color);
-            font-weight: 600;
+            font-weight: 700;
             border-bottom: 2px solid #e5e7eb;
+            background: #f4f6fa;
         }
 
         .dns-table tr:not(:last-child) td {
@@ -115,17 +127,17 @@
 
         .ip-box {
             background: #e0e7ef;
-            border-radius: 10px;
-            padding: 0.7rem 1.2rem;
+            border-radius: 12px;
+            padding: 0.8rem 1.3rem;
             min-width: 120px;
             text-align: center;
             color: var(--main-color);
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.13rem;
         }
 
         .ip-label {
-            font-size: 0.9rem;
+            font-size: 0.93rem;
             color: var(--sub-text);
             margin-bottom: 0.2rem;
             display: block;
@@ -136,10 +148,10 @@
             background: var(--accent);
             color: #fff;
             border: none;
-            border-radius: 8px;
-            padding: 0.6rem 1.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 10px;
+            padding: 0.7rem 1.7rem;
+            font-size: 1.13rem;
+            font-weight: 700;
             margin: 1rem auto 0 auto;
             cursor: pointer;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
@@ -152,7 +164,11 @@
 
         @media (max-width: 600px) {
             header h1 {
-                font-size: 1.3rem;
+                font-size: 1.35rem;
+            }
+
+            header p {
+                font-size: 0.98rem;
             }
 
             .container {
@@ -161,6 +177,7 @@
 
             .card {
                 padding: 1rem 0.5rem;
+                margin-bottom: 1.1rem;
             }
 
             .ip-status {
@@ -169,7 +186,11 @@
 
             .ip-box {
                 min-width: 90px;
-                font-size: 0.98rem;
+                font-size: 0.99rem;
+            }
+
+            .card h2 {
+                font-size: 1.05rem;
             }
         }
 
@@ -180,9 +201,9 @@
             gap: 0.5rem;
             background: #fff;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
-            border-radius: 0 0 18px 18px;
-            margin-bottom: 1rem;
-            padding: 0.5rem 0.2rem;
+            border-radius: 0 0 22px 22px;
+            margin-bottom: 1.1rem;
+            padding: 0.6rem 0.2rem;
             position: sticky;
             top: 0;
             z-index: 99;
@@ -192,10 +213,10 @@
         .nav-bar a {
             color: var(--main-color);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.4rem 1rem;
-            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.07rem;
+            padding: 0.45rem 1.1rem;
+            border-radius: 10px;
             transition: background 0.2s, color 0.2s;
             white-space: nowrap;
         }
@@ -208,79 +229,76 @@
 
         @media (max-width: 600px) {
             .nav-bar {
-                font-size: 0.95rem;
+                font-size: 1.01rem;
                 gap: 0.2rem;
-                padding: 0.3rem 0.1rem;
+                padding: 0.35rem 0.1rem;
             }
 
             .nav-bar a {
-                padding: 0.3rem 0.7rem;
-                font-size: 0.98rem;
+                padding: 0.32rem 0.7rem;
+                font-size: 1.01rem;
             }
         }
 
         .dns-list {
             display: flex;
             flex-direction: column;
-            gap: 1.1rem;
+            gap: 1.15rem;
         }
 
         .dns-item {
             background: #f8fafc;
-            border-radius: 12px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
-            padding: 0.7rem 1rem 0.7rem 1rem;
-            font-size: 1rem;
+            border-radius: 14px;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+            padding: 0.8rem 1.1rem 0.8rem 1.1rem;
+            font-size: 1.04rem;
             word-break: break-all;
+            margin-bottom: 0.1rem;
         }
 
         .dns-name {
             font-weight: bold;
             color: var(--main-color);
-            margin-bottom: 0.2em;
-            font-size: 1.08em;
+            margin-bottom: 0.22em;
+            font-size: 1.11em;
         }
 
         .copyable {
             user-select: all;
             cursor: pointer;
             background: #e0e7ef;
-            border-radius: 5px;
-            padding: 0 0.2em;
-            margin-left: 0.2em;
+            border-radius: 6px;
+            padding: 0 0.22em;
+            margin-left: 0.22em;
             font-family: monospace;
-            font-size: 0.98em;
+            font-size: 0.99em;
+            transition: background 0.15s;
+        }
+
+        .copyable:hover {
+            background: #dbeafe;
         }
 
         @media (max-width: 600px) {
             .dns-item {
-                font-size: 0.98rem;
-                padding: 0.6rem 0.5rem;
+                font-size: 1.01rem;
+                padding: 0.65rem 0.5rem;
             }
 
             .dns-list {
                 gap: 0.7rem;
             }
-        }
 
-        .dns-recommend {
-            display: inline-block;
-            background: #fff0f0;
-            color: #e53935;
-            border: 1px solid #e53935;
-            border-radius: 6px;
-            font-size: 0.85em;
-            font-weight: bold;
-            padding: 0.08em 0.7em 0.08em 0.5em;
-            margin-left: 0.5em;
-            vertical-align: middle;
-            letter-spacing: 1px;
+            .dns-name {
+                font-size: 1.04em;
+            }
         }
 
         .dns-status {
-            font-size: 0.93em;
+            font-size: 0.97em;
             color: #888;
-            margin-top: 0.2em;
+            margin-top: 0.18em;
+            margin-bottom: 0.1em;
         }
 
         .dns-status-value {
@@ -295,12 +313,30 @@
         .dns-status-value.dns-fail {
             color: #e53935;
         }
+
+        .dns-status-note {
+            color: #b0b0b0;
+            font-size: 0.92em;
+            margin-top: 0.1em;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .dns-status {
+                font-size: 1.04em;
+                margin-top: 0.22em;
+            }
+
+            .dns-status-note {
+                font-size: 0.99em;
+            }
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <h1>免费公共 DNS 服务器大全（DNS大全）</h1>
+        <h1>免费公共 DNS 服务器大全</h1>
         <p>收集全球主流公共 DNS 服务器，支持 IPv4/IPv6/DoT/DoH，适合中国大陆及海外用户。</p>
     </header>
     <nav class="nav-bar">
@@ -341,6 +377,7 @@
                     <div><b>DoT:</b> <span class="copyable">dot.pub</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.pub/dns-query</span></div>
                     <div class="dns-status" id="dns-status-dnspod">DoH有效性：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
                     </div>
                 </div>
                 <div class="dns-item">
@@ -350,6 +387,9 @@
                     <div><b>IPv6:</b> <span class="copyable">2400:3200::1</span></div>
                     <div><b>DoT:</b> <span class="copyable">dns.alidns.com</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.alidns.com/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-alidns">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">百度 DNS</div>
@@ -361,6 +401,7 @@
                     <div><b>DoT:</b> <span class="copyable">dot.360.cn</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.360.cn/dns-query</span></div>
                     <div class="dns-status" id="dns-status-360-ctc">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
                     </div>
                 </div>
                 <div class="dns-item">
@@ -369,7 +410,9 @@
                     <div><b>DoT:</b> <span class="copyable">dot.360.cn</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.360.cn/dns-query</span></div>
                     <div class="dns-status" id="dns-status-360-unicom">DoH有效性参考：<span
-                            class="dns-status-value">检测中…</span></div>
+                            class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">114DNS 纯净版</div>
@@ -395,12 +438,18 @@
                     <div><b>DoT:</b> <span class="copyable">dot.onedns.net</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.onedns.net/dns-query</span></div>
                     <div class="dns-status" id="dns-status-onedns">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
                     </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">澳门电讯 CTM</div>
                     <div><b>IPv4:</b> <span class="copyable">202.175.3.8</span> <span
                             class="copyable">202.175.3.3</span></div>
+                </div>
+                <div class="dns-item">
+                    <div class="dns-name">字节 公共DNS</div>
+                    <div><b>IPv4:</b> <span class="copyable">180.184.1.1</span> <span
+                            class="copyable">180.184.2.2</span></div>
                 </div>
             </div>
         </div>
@@ -414,7 +463,9 @@
                             class="copyable">2001:4860:4860::8844</span></div>
                     <div><b>DoT:</b> <span class="copyable">dns.google</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.google/dns-query</span></div>
-                    <div class="dns-status" id="dns-status-google">有效性：<span class="dns-status-value">检测中…</span></div>
+                    <div class="dns-status" id="dns-status-google">有效性：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">Cloudflare DNS</div>
@@ -424,6 +475,7 @@
                     <div><b>DoT:</b> <span class="copyable">cloudflare-dns.com</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://cloudflare-dns.com/dns-query</span></div>
                     <div class="dns-status" id="dns-status-cloudflare">有效性：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
                     </div>
                 </div>
                 <div class="dns-item">
@@ -434,7 +486,9 @@
                     </div>
                     <div><b>DoT:</b> <span class="copyable">dns.quad9.net</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.quad9.net/dns-query</span></div>
-                    <div class="dns-status" id="dns-status-quad9">有效性：<span class="dns-status-value">检测中…</span></div>
+                    <div class="dns-status" id="dns-status-quad9">有效性：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">OpenDNS (Cisco Umbrella) <span class="dns-recommend">推荐</span></div>
@@ -443,7 +497,9 @@
                     <div><b>IPv6:</b> <span class="copyable">2620:119:35::35</span> <span
                             class="copyable">2620:119:53::53</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.opendns.com/dns-query</span></div>
-                    <div class="dns-status" id="dns-status-opendns">有效性：<span class="dns-status-value">检测中…</span></div>
+                    <div class="dns-status" id="dns-status-opendns">有效性：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">DNS.SB</div>
@@ -454,6 +510,7 @@
                     <div><b>DoT:</b> <span class="copyable">dns.sb</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.dns.sb/dns-query</span></div>
                     <div class="dns-status" id="dns-status-dnssb">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
                     </div>
                 </div>
                 <div class="dns-item">
@@ -465,6 +522,7 @@
                     <div><b>DoT:</b> <span class="copyable">dns.yandex.net</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.yandex.net/dns-query</span></div>
                     <div class="dns-status" id="dns-status-yandex">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
                     </div>
                 </div>
                 <div class="dns-item">
@@ -476,6 +534,7 @@
                     <div><b>DoT:</b> <span class="copyable">dns.adguard.com</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.adguard.com/dns-query</span></div>
                     <div class="dns-status" id="dns-status-adguard">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
                     </div>
                 </div>
                 <div class="dns-item">
@@ -485,6 +544,7 @@
                     <div><b>IPv6:</b> <span class="copyable">2610:a1:1018::1</span> <span
                             class="copyable">2610:a1:1019::1</span></div>
                     <div class="dns-status" id="dns-status-neustar">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                        <span class="dns-status-note">注：部分DoH因浏览器安全策略无法前端检测（CORS限制），实际可用性请以网络环境为准。</span>
                     </div>
                 </div>
                 <div class="dns-item">
@@ -1143,18 +1203,25 @@
             fetch(url + '?name=www.baidu.com&type=A', {
                 method: 'GET',
                 headers: { 'accept': 'application/dns-json' },
-            }).then(res => res.json()).then(data => {
+            }).then(res => {
+                if (!res.ok) throw new Error('HTTP error');
+                return res.json();
+            }).then(data => {
                 const el = document.querySelector('#' + id + ' .dns-status-value');
                 if (data.Answer && data.Answer.length > 0) {
-                    el.textContent = '通过';
+                    el.textContent = '有效';
                     el.classList.add('dns-ok');
                 } else {
-                    el.textContent = '未知';
+                    el.textContent = '无效';
                     el.classList.add('dns-fail');
                 }
-            }).catch(() => {
+            }).catch(e => {
                 const el = document.querySelector('#' + id + ' .dns-status-value');
-                el.textContent = '未知';
+                if (e instanceof TypeError) {
+                    el.textContent = '无法前端检测（CORS限制）';
+                } else {
+                    el.textContent = '未知';
+                }
                 el.classList.add('dns-fail');
             });
         }
@@ -1170,6 +1237,7 @@
         checkDoHStatus('dns-status-360-ctc', 'https://doh.360.cn/dns-query');
         checkDoHStatus('dns-status-360-unicom', 'https://doh.360.cn/dns-query');
         checkDoHStatus('dns-status-onedns', 'https://doh.onedns.net/dns-query');
+        checkDoHStatus('dns-status-alidns', 'https://dns.alidns.com/dns-query');
     </script>
 </body>
 
