@@ -262,6 +262,39 @@
                 gap: 0.7rem;
             }
         }
+
+        .dns-recommend {
+            display: inline-block;
+            background: #fff0f0;
+            color: #e53935;
+            border: 1px solid #e53935;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: bold;
+            padding: 0.08em 0.7em 0.08em 0.5em;
+            margin-left: 0.5em;
+            vertical-align: middle;
+            letter-spacing: 1px;
+        }
+
+        .dns-status {
+            font-size: 0.93em;
+            color: #888;
+            margin-top: 0.2em;
+        }
+
+        .dns-status-value {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .dns-status-value.dns-ok {
+            color: #27ae60;
+        }
+
+        .dns-status-value.dns-fail {
+            color: #e53935;
+        }
     </style>
 </head>
 
@@ -302,11 +335,13 @@
             <h2>国内知名 DNS</h2>
             <div class="dns-list">
                 <div class="dns-item">
-                    <div class="dns-name">腾讯 DNSPod</div>
+                    <div class="dns-name">腾讯 DNSPod <span class="dns-recommend">推荐</span></div>
                     <div><b>IPv4:</b> <span class="copyable">119.29.29.29</span></div>
                     <div><b>IPv6:</b> <span class="copyable">2402:4e00::</span></div>
                     <div><b>DoT:</b> <span class="copyable">dot.pub</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.pub/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-dnspod">DoH有效性：<span class="dns-status-value">检测中…</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">阿里 DNS</div>
@@ -325,12 +360,16 @@
                     <div><b>IPv4:</b> <span class="copyable">101.226.4.6</span></div>
                     <div><b>DoT:</b> <span class="copyable">dot.360.cn</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.360.cn/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-360-ctc">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">360 安全 DNS（联通）</div>
                     <div><b>IPv4:</b> <span class="copyable">123.125.81.6</span></div>
                     <div><b>DoT:</b> <span class="copyable">dot.360.cn</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.360.cn/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-360-unicom">DoH有效性参考：<span
+                            class="dns-status-value">检测中…</span></div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">114DNS 纯净版</div>
@@ -355,6 +394,8 @@
                     <div><b>IPv6:</b> <span class="copyable">240c::6666</span></div>
                     <div><b>DoT:</b> <span class="copyable">dot.onedns.net</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.onedns.net/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-onedns">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">澳门电讯 CTM</div>
@@ -373,6 +414,7 @@
                             class="copyable">2001:4860:4860::8844</span></div>
                     <div><b>DoT:</b> <span class="copyable">dns.google</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.google/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-google">有效性：<span class="dns-status-value">检测中…</span></div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">Cloudflare DNS</div>
@@ -381,6 +423,8 @@
                             class="copyable">2606:4700:4700::1001</span></div>
                     <div><b>DoT:</b> <span class="copyable">cloudflare-dns.com</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://cloudflare-dns.com/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-cloudflare">有效性：<span class="dns-status-value">检测中…</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">Quad9 DNS</div>
@@ -390,14 +434,16 @@
                     </div>
                     <div><b>DoT:</b> <span class="copyable">dns.quad9.net</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.quad9.net/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-quad9">有效性：<span class="dns-status-value">检测中…</span></div>
                 </div>
                 <div class="dns-item">
-                    <div class="dns-name">OpenDNS (Cisco Umbrella)</div>
+                    <div class="dns-name">OpenDNS (Cisco Umbrella) <span class="dns-recommend">推荐</span></div>
                     <div><b>IPv4:</b> <span class="copyable">208.67.222.222</span> <span
                             class="copyable">208.67.220.220</span></div>
                     <div><b>IPv6:</b> <span class="copyable">2620:119:35::35</span> <span
                             class="copyable">2620:119:53::53</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.opendns.com/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-opendns">有效性：<span class="dns-status-value">检测中…</span></div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">DNS.SB</div>
@@ -407,6 +453,8 @@
                             class="copyable">2a09:bac1:fffe::2</span></div>
                     <div><b>DoT:</b> <span class="copyable">dns.sb</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://doh.dns.sb/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-dnssb">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">Yandex DNS（基础版）</div>
@@ -416,6 +464,8 @@
                             class="copyable">2a02:6b8:0:1::feed:0ff</span></div>
                     <div><b>DoT:</b> <span class="copyable">dns.yandex.net</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.yandex.net/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-yandex">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">AdGuard DNS（默认）</div>
@@ -425,6 +475,8 @@
                             class="copyable">2a10:50c0::ad2:ff</span></div>
                     <div><b>DoT:</b> <span class="copyable">dns.adguard.com</span></div>
                     <div><b>DoH:</b> <span class="copyable">https://dns.adguard.com/dns-query</span></div>
+                    <div class="dns-status" id="dns-status-adguard">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">Neustar UltraDNS（基础版）</div>
@@ -432,6 +484,8 @@
                             class="copyable">156.154.71.1</span></div>
                     <div><b>IPv6:</b> <span class="copyable">2610:a1:1018::1</span> <span
                             class="copyable">2610:a1:1019::1</span></div>
+                    <div class="dns-status" id="dns-status-neustar">DoH有效性参考：<span class="dns-status-value">检测中…</span>
+                    </div>
                 </div>
                 <div class="dns-item">
                     <div class="dns-name">COMODO SecureDNS</div>
@@ -1084,6 +1138,38 @@
                 }
             });
         });
+        // DNS有效性检测（仅DoH）
+        function checkDoHStatus(id, url) {
+            fetch(url + '?name=www.baidu.com&type=A', {
+                method: 'GET',
+                headers: { 'accept': 'application/dns-json' },
+            }).then(res => res.json()).then(data => {
+                const el = document.querySelector('#' + id + ' .dns-status-value');
+                if (data.Answer && data.Answer.length > 0) {
+                    el.textContent = '通过';
+                    el.classList.add('dns-ok');
+                } else {
+                    el.textContent = '未知';
+                    el.classList.add('dns-fail');
+                }
+            }).catch(() => {
+                const el = document.querySelector('#' + id + ' .dns-status-value');
+                el.textContent = '未知';
+                el.classList.add('dns-fail');
+            });
+        }
+        checkDoHStatus('dns-status-dnspod', 'https://doh.pub/dns-query');
+        checkDoHStatus('dns-status-cloudflare', 'https://cloudflare-dns.com/dns-query');
+        checkDoHStatus('dns-status-google', 'https://dns.google/dns-query');
+        checkDoHStatus('dns-status-quad9', 'https://dns.quad9.net/dns-query');
+        checkDoHStatus('dns-status-opendns', 'https://doh.opendns.com/dns-query');
+        checkDoHStatus('dns-status-dnssb', 'https://doh.dns.sb/dns-query');
+        checkDoHStatus('dns-status-yandex', 'https://dns.yandex.net/dns-query');
+        checkDoHStatus('dns-status-adguard', 'https://dns.adguard.com/dns-query');
+        checkDoHStatus('dns-status-neustar', 'https://dns.neustar/dns-query');
+        checkDoHStatus('dns-status-360-ctc', 'https://doh.360.cn/dns-query');
+        checkDoHStatus('dns-status-360-unicom', 'https://doh.360.cn/dns-query');
+        checkDoHStatus('dns-status-onedns', 'https://doh.onedns.net/dns-query');
     </script>
 </body>
 
