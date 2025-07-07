@@ -815,34 +815,14 @@
         }).catch(() => {
             document.getElementById('ipv6-status').textContent = '×';
         });
-        // 获取地区和运营商（优先IPv6，否则IPv4）
-        (async function () {
-            let ip = '';
-            try {
-                // 先尝试获取IPv6
-                let v6 = await fetch('https://api64.ipify.org?format=json').then(r => r.json()).then(d => d.ip).catch(() => null);
-                if (v6 && v6.indexOf(':') > -1) ip = v6;
-                else ip = await fetch('https://api.ipify.org?format=json').then(r => r.json()).then(d => d.ip);
-            } catch (e) { }
-            if (!ip) {
-                document.getElementById('ip-location').textContent = '地区：×';
-                document.getElementById('ip-isp').textContent = '运营商：×';
-                return;
-            }
-            fetch('https://ip9.com.cn/get?ip=' + encodeURIComponent(ip)).then(r => r.json()).then(res => {
-                if (res.ret === 200 && res.data) {
-                    const d = res.data;
-                    document.getElementById('ip-location').textContent = '地区：' + (d.country || '') + (d.prov ? ' ' + d.prov : '') + (d.city ? ' ' + d.city : '');
-                    document.getElementById('ip-isp').textContent = '运营商：' + (d.isp || '');
-                } else {
-                    document.getElementById('ip-location').textContent = '地区：×';
-                    document.getElementById('ip-isp').textContent = '运营商：×';
-                }
-            }).catch(() => {
-                document.getElementById('ip-location').textContent = '地区：×';
-                document.getElementById('ip-isp').textContent = '运营商：×';
-            });
-        })();
+        // 获取地区和运营商
+        fetch('https://ipapi.co/json/').then(r => r.json()).then(d => {
+            document.getElementById('ip-location').textContent = '地区：' + (d.country_name || '') + (d.region ? ' ' + d.region : '') + (d.city ? ' ' + d.city : '');
+            document.getElementById('ip-isp').textContent = '运营商：' + (d.org || '');
+        }).catch(() => {
+            document.getElementById('ip-location').textContent = '地区：×';
+            document.getElementById('ip-isp').textContent = '运营商：×';
+        });
         // 平滑滚动
         document.querySelectorAll('.nav-bar a').forEach(a => {
             a.addEventListener('click', function (e) {
