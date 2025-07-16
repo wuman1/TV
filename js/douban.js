@@ -2,7 +2,7 @@
 
 // 豆瓣标签列表 - 修改为默认标签
 let defaultMovieTags = ['热门', '最新', '经典', '豆瓣高分', '冷门佳片', '华语', '欧美', '韩国', '日本', '动作', '喜剧', '爱情', '科幻', '悬疑', '恐怖', '治愈'];
-let defaultTvTags = ['热门', '美剧', '英剧', '韩剧', '日剧', '国产剧', '港剧', '日本动画', '综艺', '纪录片'];
+let defaultTvTags = ['同性', '热门', '美剧', '英剧', '韩剧', '日剧', '国产剧', '港剧', '日本动画', '综艺', '纪录片'];
 
 // 用户标签列表 - 存储用户实际使用的标签（包含保留的系统标签和用户添加的自定义标签）
 let movieTags = [];
@@ -49,9 +49,9 @@ function saveUserTags() {
 }
 
 let doubanMovieTvCurrentSwitch = 'movie';
-let doubanCurrentTag = '热门';
+let doubanCurrentTag = '同性';
 let doubanPageStart = 0;
-const doubanPageSize = 16; // 一次显示的项目数量
+const doubanPageSize = 24; // 一次显示的项目数量
 
 // 初始化豆瓣功能
 function initDouban() {
