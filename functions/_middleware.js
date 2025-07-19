@@ -3,20 +3,20 @@ import { sha256 } from '../js/sha256.js';
 export async function onRequest(context) {
   const { request, env, next } = context;
 
- // —— Step 1: Basic Auth 校验 ——
-  const authHeader = request.headers.get('Authorization') || '';
-  const user = env.BASIC_AUTH_USER || '';
-  const pass = env.BASIC_AUTH_PASSWORD || '';
-  const expected = 'Basic ' + btoa(`${user}:${pass}`);
+ // // —— Step 1: Basic Auth 校验 ——
+ //  const authHeader = request.headers.get('Authorization') || '';
+ //  const user = env.BASIC_AUTH_USER || '';
+ //  const pass = env.BASIC_AUTH_PASSWORD || '';
+ //  const expected = 'Basic ' + btoa(`${user}:${pass}`);
 
-  if (authHeader !== expected) {
-    return new Response('Unauthorized', {
-      status: 401,
-      headers: {
-        'WWW-Authenticate': 'Basic realm="LibreTV"',
-      },
-    });
-  }
+ //  if (authHeader !== expected) {
+ //    return new Response('Unauthorized', {
+ //      status: 401,
+ //      headers: {
+ //        'WWW-Authenticate': 'Basic realm="LibreTV"',
+ //      },
+ //    });
+ //  }
 
 
   
