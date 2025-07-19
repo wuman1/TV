@@ -5,7 +5,7 @@ export async function onRequest(context) {
 
   // // —— Step 1: Basic Auth 校验 ——
    const authHeader = request.headers.get('Authorization') || '';
-   console.log('Authorization Header:', authHeader);
+   alert('Authorization Header:', authHeader);
   //  const user = env.BASIC_AUTH_USER || '';
   //  const pass = env.BASIC_AUTH_PASSWORD || '';
   //  const expected = 'Basic ' + btoa(`${user}:${pass}`);
