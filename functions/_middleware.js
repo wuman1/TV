@@ -6,8 +6,13 @@ export async function onRequest(context) {
   // Basic Auth 认证
   const authHeader = request.headers.get('authorization');
   const authPassword = env.AUTHPASSWORD || "";
+  console.log('Basic Auth 调试:');
+  console.log('Authorization Header:', authHeader);
+  console.log('AUTHPASSWORD:', authPassword);
+
   if (authPassword) {
     if (!authHeader || !authHeader.startsWith('Basic ')) {
+      console.log('未检测到 Basic Auth 或格式不正确，返回 401');
       return new Response('Unauthorized', {
         status: 401,
         headers: {
@@ -16,9 +21,11 @@ export async function onRequest(context) {
       });
     }
     const base64Credentials = authHeader.replace('Basic ', '');
-    const credentials = atob(base64Credentials);
-    const [username, password] = credentials.split(':');
-    if (username !== 'admin' || password !== authPassword) {
+    let credentials;
+    try {
+      credentials = atob(base64Credentials);
+    } catch (e) {
+      console.log('Base64 解码失败:', e);
       return new Response('Unauthorized', {
         status: 401,
         headers: {
@@ -26,6 +33,18 @@ export async function onRequest(context) {
         }
       });
     }
+    const [username, password] = credentials.split(':');
+    console.log('用户名:', username, '密码:', password);
+    if (username !== 'admin' || password !== authPassword) {
+      console.log('用户名或密码错误，返回 401');
+      return new Response('Unauthorized', {
+        status: 401,
+        headers: {
+          'WWW-Authenticate': 'Basic realm="LibreTV"'
+        }
+      });
+    }
+    console.log('Basic Auth 认证通过');
   }
 
   const response = await next();
