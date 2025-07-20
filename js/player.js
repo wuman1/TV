@@ -316,7 +316,7 @@ function initWaline() {
   // Waline配置
   const walineConfig = {
     el: '#waline-container',
-    serverURL: 'https://waline.example.com', // 替换为你的Waline服务地址
+    serverURL: 'https://waline.congyu.dpdns.org', // 替换为你的Waline服务地址
     path: path,
     dark: 'html.dark-mode',
     pageview: true,
