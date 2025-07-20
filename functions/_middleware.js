@@ -3,6 +3,31 @@ import { sha256 } from '../js/sha256.js';
 export async function onRequest(context) {
   const { request, env, next } = context;
 
+  // Basic Auth 认证
+  const authHeader = request.headers.get('authorization');
+  const authPassword = env.AUTHPASSWORD || "";
+  if (authPassword) {
+    if (!authHeader || !authHeader.startsWith('Basic ')) {
+      return new Response('Unauthorized', {
+        status: 401,
+        headers: {
+          'WWW-Authenticate': 'Basic realm="LibreTV"'
+        }
+      });
+    }
+    const base64Credentials = authHeader.replace('Basic ', '');
+    const credentials = atob(base64Credentials);
+    const [username, password] = credentials.split(':');
+    if (username !== 'admin' || password !== authPassword) {
+      return new Response('Unauthorized', {
+        status: 401,
+        headers: {
+          'WWW-Authenticate': 'Basic realm="LibreTV"'
+        }
+      });
+    }
+  }
+
   const response = await next();
   const contentType = response.headers.get("content-type") || "";
 
