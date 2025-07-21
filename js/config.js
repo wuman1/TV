@@ -161,8 +161,7 @@ const API_SITES = {
     },
     yutu: {
         api: 'https://yutuzy10.com',
-        name: '玉兔资源',
-        adult: true
+        name: '玉兔资源'
     },
 
     // 下面是资源失效率高的API源，不建议使用
