@@ -163,13 +163,7 @@ const API_SITES = {
         api: 'https://yutuzy10.com',
         name: '玉兔资源',
         adult: true
-    },
-    chigua: {
-        api: 'https://wikiwiki.dpltsbr.com',
-        name: '吃瓜资源',
-        adult: true
     }
-    
     // 下面是资源失效率高的API源，不建议使用
     // subo: {
     //     api: 'https://subocaiji.com/api.php/provide/vod',
