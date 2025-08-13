@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KANetflix - 影视App下载</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 新增：Favicon图标 -->
+   <link rel="icon" href="/image/retrotv_5520.png"> type="image/png">
+      <link rel="apple-touch-icon" href="/image/retrotv_5520.png"> type="image/png">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: '#121212',
+            darker: '#0A0A0A',
+            primary: '#3B82F6',
+            secondary: '#8B5CF6',
+            success: '#10B981',
+            warning: '#F59E0B',
+            danger: '#EF4444',
+            surface: '#1E1E1E',
+            'surface-hover': '#2D2D2D',
+            'text-primary': '#FFFFFF',
+            'text-secondary': '#A3A3A3',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .bg-gradient-accent {
+        background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+      }
+      .platform-card {
+        transition: all 0.3s ease;
+      }
+      .platform-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1), 0 10px 10px -5px rgba(59, 130, 246, 0.04);
+      }
+      .text-gradient {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-dark text-text-primary antialiased">
+  <!-- 导航栏 -->
+  <header class="fixed top-0 left-0 w-full bg-darker/80 backdrop-blur-md z-50 shadow-lg">
+    <div class="container mx-auto px-4 py-4">
+      <div class="flex justify-between items-center">
+        <!-- 修改：添加链接使左上角logo可点击回到首页 -->
+        <a href="https://kanetflix.pages.dev/" class="flex items-center">
+          <img src="/image/KANetflix.png" alt="KANetflix图标" class="w-10 h-10 rounded">
+          <span class="ml-3 text-xl font-bold text-gradient">KANetflix</span>
+        </a>
+        
+        <nav class="hidden md:flex space-x-8">
+          <a href="#download" class="text-text-secondary hover:text-text-primary transition-colors duration-200">下载</a>
+          <a href="#faq" class="text-text-secondary hover:text-text-primary transition-colors duration-200">常见问题</a>
+        </nav>
+        
+        <a href="https://kanetflix.pages.dev/" class="hidden md:block px-5 py-2 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-colors duration-200">
+          <i class="fa fa-home mr-2"></i>回到首页
+        </a>
+        
+        <button class="md:hidden text-text-primary focus:outline-none" id="mobile-menu-button">
+          <i class="fa fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- 移动端菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-darker shadow-lg">
+      <div class="px-4 pt-2 pb-4 space-y-3">
+        <a href="#download" class="block py-2 text-text-secondary hover:text-text-primary transition-colors duration-200">下载</a>
+        <a href="#faq" class="block py-2 text-text-secondary hover:text-text-primary transition-colors duration-200">常见问题</a>
+        <a href="https://kanetflix.pages.dev/" class="block py-2 px-4 bg-primary text-white rounded-lg font-medium text-center hover:bg-primary/90 transition-colors duration-200">
+          <i class="fa fa-home mr-2"></i>回到首页
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主内容 -->
+  <main class="pt-28 pb-16">
+    <div class="container mx-auto px-4">
+      <!-- 英雄区域 -->
+      <section class="text-center mb-16">
+        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-6">
+          <span class="text-gradient">KANetflix</span> 畅享海量影视
+        </h1>
+        <p class="text-text-secondary text-lg max-w-2xl mx-auto mb-10">
+          KANetflix 是一款影视App，支持在 Mac、Windows、Android 和 iOS 设备上无缝播放精彩影视内容
+        </p>
+        <a href="#download" class="inline-flex items-center px-8 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 shadow-lg">
+          <i class="fa fa-download mr-2"></i>
+          <span>立即下载</span>
+        </a>
+      </section>
+      
+      <!-- 下载区域 -->
+      <section id="download" class="mb-20">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-center mb-12">选择您的平台</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Mac 下载 -->
+          <div class="bg-surface rounded-xl p-6 shadow-lg platform-card">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 rounded-full bg-[#2D2D2D] flex items-center justify-center">
+                <i class="fa fa-apple text-2xl text-[#FFFFFF]"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-xl font-semibold">MacOS</h3>
+                <p class="text-text-secondary text-sm">10.15 或更高版本</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center p-3 bg-[#2D2D2D] rounded-lg">
+                <span class="font-medium">看奈飞 for Mac</span>
+                <span class="text-text-secondary text-sm">15.75 MB</span>
+              </div>
+              <!-- 新增 target="_blank" -->
+              <a href="https://easylink.cc/3l5m72" target="_blank" class="block w-full py-3 bg-primary text-white rounded-lg font-medium text-center hover:bg-primary/90 transition-colors duration-200 shadow-md">
+                <i class="fa fa-download mr-2"></i>下载 .dmg
+              </a>
+              <p class="text-xs text-center text-text-secondary mt-2">适用于 Intel 和 Apple Silicon M1-4<br>电脑需打开任何来源</p>
+            </div>
+          </div>
+          
+          <!-- Windows 下载 -->
+          <div class="bg-surface rounded-xl p-6 shadow-lg platform-card">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 rounded-full bg-[#2D2D2D] flex items-center justify-center">
+                <i class="fa fa-windows text-2xl text-[#0078D7]"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-xl font-semibold">Windows</h3>
+                <p class="text-text-secondary text-sm">10/11 (64-bit)</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center p-3 bg-[#2D2D2D] rounded-lg">
+                <span class="font-medium">看奈飞 for Windows</span>
+                <span class="text-text-secondary text-sm">1.98 MB</span>
+              </div>
+              <!-- 新增 target="_blank" -->
+              <a href="https://easylink.cc/3r92ev" target="_blank" class="block w-full py-3 bg-primary text-white rounded-lg font-medium text-center hover:bg-primary/90 transition-colors duration-200 shadow-md">
+                <i class="fa fa-download mr-2"></i>下载 .exe
+              </a>
+              <p class="text-xs text-center text-text-secondary mt-2">安装程序 (推荐)</p>
+            </div>
+          </div>
+          
+          <!-- Android 下载 -->
+          <div class="bg-surface rounded-xl p-6 shadow-lg platform-card">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 rounded-full bg-[#2D2D2D] flex items-center justify-center">
+                <i class="fa fa-android text-2xl text-[#3DDC84]"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-xl font-semibold">Android</h3>
+                <p class="text-text-secondary text-sm">8.0 或更高版本</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center p-3 bg-[#2D2D2D] rounded-lg">
+                <span class="font-medium">看奈飞 for Android</span>
+                <span class="text-text-secondary text-sm">5.91 MB</span>
+              </div>
+              <!-- 新增 target="_blank" -->
+              <a href="https://easylink.cc/cm1fro" target="_blank" class="block w-full py-3 bg-primary text-white rounded-lg font-medium text-center hover:bg-primary/90 transition-colors duration-200 shadow-md">
+                <i class="fa fa-download mr-2"></i>下载 .apk
+              </a>
+              <p class="text-xs text-center text-text-secondary mt-2">
+                允许"未知来源"安装权限<br>版本兼容 Android 8.0+
+              </p>
+            </div>
+          </div>
+          
+          <!-- iOS 下载 -->
+          <div class="bg-surface rounded-xl p-6 shadow-lg platform-card">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 rounded-full bg-[#2D2D2D] flex items-center justify-center">
+                <i class="fa fa-mobile text-2xl text-[#FFFFFF]"></i>
+              </div>
+              <div class="ml-4">
+                <h3 class="text-xl font-semibold">iOS</h3>
+                <p class="text-text-secondary text-sm">14.0 或更高版本</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center p-3 bg-[#2D2D2D] rounded-lg">
+                <span class="font-medium">看奈飞 for iOS</span>
+                <span class="text-text-secondary text-sm">1.40 MB</span>
+              </div>
+              <!-- 新增 target="_blank" -->
+              <a href="https://easylink.cc/t22xub" target="_blank" class="block w-full py-3 bg-[#333333] text-white rounded-lg font-medium text-center hover:bg-[#404040] transition-colors duration-200 shadow-md">
+                <i class="fa fa-apple mr-2"></i>需要自行签名安装
+              </a>
+              <p class="text-xs text-center text-text-secondary mt-2">兼容 iPhone 和 iPad</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 常见问题 -->
+      <section id="faq" class="bg-surface rounded-xl p-8 md:p-12 shadow-xl">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-center mb-12">常见问题</h2>
+        
+        <div class="max-w-3xl mx-auto space-y-6">
+
+         <!-- 新增FAQ：安卓和苹果也想完美的使用有什么好的办法 1-->
+          <div class="border-b border-[#2D2D2D] pb-6">
+            <button class="faq-toggle w-full flex justify-between items-center text-left focus:outline-none" data-target="faq1">
+              <h3 class="text-lg font-medium">安卓和苹果也想完美的使用有什么好的办法？</h3>
+              <i class="fa fa-chevron-down text-text-secondary transition-transform duration-200"></i>
+            </button>
+            <div id="faq1" class="faq-content hidden pt-4">
+              <p class="text-text-secondary">看奈飞官网链接（联系站长发）+夸克浏览器，绝配，自加速可调画质，音质的完美搭档</p><img src='https://image.baidu.com/search/down?thumburl=https://baidu.com&url=https://tvax2.sinaimg.cn/large/8eb32d9bgy1i1rkdtkwpej21e00rsn3p.jpg' alt='8eb32d9bgy1i1rkdtkwpej21e00rsn3p'/>
+            </div>
+          </div>
+          
+          <!-- FAQ 项目 2 -->
+          <div class="border-b border-[#2D2D2D] pb-6">
+            <button class="faq-toggle w-full flex justify-between items-center text-left focus:outline-none" data-target="faq2">
+              <h3 class="text-lg font-medium">KANetflix 中的影视资源合法吗？</h3>
+              <i class="fa fa-chevron-down text-text-secondary transition-transform duration-200"></i>
+            </button>
+            <div id="faq2" class="faq-content hidden pt-4">
+              <p class="text-text-secondary">KANetflix 严格遵守相关法律法规，本站仅为视频搜索工具，不存储、上传或分发任何视频内容。 所有视频均来自第三方API接口。如有侵权，请联系相关内容提供方。。</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 项目 3 -->
+          <div class="border-b border-[#2D2D2D] pb-6">
+            <button class="faq-toggle w-full flex justify-between items-center text-left focus:outline-none" data-target="faq3">
+              <h3 class="text-lg font-medium">如何解决播放卡顿问题？</h3>
+              <i class="fa fa-chevron-down text-text-secondary transition-transform duration-200"></i>
+            </button>
+            <div id="faq3" class="faq-content hidden pt-4">
+              <p class="text-text-secondary">自行设置比较合适的源不好的源就关掉，目前比较好的影视源（清晰度VS）为【电影天堂资源>如意资源>暴风资源>天涯资源>豆瓣资源】。若问题依然存在，请联系我们的客服团队。</p>
+            </div>
+          </div>
+          
+          <!-- FAQ 项目 4 -->
+          <div class="border-b border-[#2D2D2D] pb-6">
+            <button class="faq-toggle w-full flex justify-between items-center text-left focus:outline-none" data-target="faq4">
+              <h3 class="text-lg font-medium">KANetflix 是否支持投屏功能？</h3>
+              <i class="fa fa-chevron-down text-text-secondary transition-transform duration-200"></i>
+            </button>
+            <div id="faq4" class="faq-content hidden pt-4">
+              <p class="text-text-secondary">是的，KANetflix 目前win支持投屏功能。您可以在播放界面找到投屏按钮，将影视内容投射到支持的电视或其他设备上，享受大屏观影体验。</p>
+            </div>
+          </div>
+          
+          <!-- 新增FAQ：安卓安装说明 5-->
+          <div class="border-b border-[#2D2D2D] pb-6">
+            <button class="faq-toggle w-full flex justify-between items-center text-left focus:outline-none" data-target="faq5">
+              <h3 class="text-lg font-medium">如何安装 Android APK 文件？</h3>
+              <i class="fa fa-chevron-down text-text-secondary transition-transform duration-200"></i>
+            </button>
+            <div id="faq5" class="faq-content hidden pt-4">
+              <p class="text-text-secondary">1. 点击下载按钮后，等待 APK 文件下载完成</p>
+              <p class="text-text-secondary">2. 在通知栏或文件管理器中找到下载的 APK 文件</p>
+              <p class="text-text-secondary">3. 点击 APK 文件开始安装</p>
+              <p class="text-text-secondary">4. 如果提示"安装被阻止"，请在设置中允许"未知来源"安装权限</p>
+              <p class="text-text-secondary">5. 完成安装后，即可打开 KANetflix App</p>
+            </div>
+          </div>
+          
+          <!-- 新增FAQ：跳转到浏览器下载说明 6-->
+          <div class="border-b border-[#2D2D2D] pb-6">
+            <button class="faq-toggle w-full flex justify-between items-center text-left focus:outline-none" data-target="faq6">
+              <h3 class="text-lg font-medium">为什么下载按钮会跳转到浏览器？</h3>
+              <i class="fa fa-chevron-down text-text-secondary transition-transform duration-200"></i>
+            </button>
+            <div id="faq6" class="faq-content hidden pt-4">
+              <p class="text-text-secondary">为了提供更稳定的下载体验，我们的应用安装包托管在第三方平台。点击下载按钮后，系统会自动跳转到浏览器，您可以在浏览器中完成下载和安装过程。</p>
+            </div>
+          </div>
+
+          <!-- 新增FAQ：更新日志 7-->
+          <div class="border-b border-[#2D2D2D] pb-6">
+            <button class="faq-toggle w-full flex justify-between items-center text-left focus:outline-none" data-target="faq7">
+              <h3 class="text-lg font-medium">客户端更新日志</h3>
+              <i class="fa fa-chevron-down text-text-secondary transition-transform duration-200"></i>
+            </button>
+            <div id="faq7" class="faq-content hidden pt-4">
+              <p class="text-text-secondary">2025-06-19 16:41 搜索结果卡片按照视频名称优先排序，相同名称的视频会按照接口源名称进行二级排序 </p>
+              <p class="text-text-secondary">2025-06-11 21:42 添加播放页资源切换功能 </p>
+              <p class="text-text-secondary">2025-06-11 19:35 新增支持设置按钮密码访问 </p>
+              <p class="text-text-secondary">2025-06-08 22:14 自动隐藏播放器的工具栏</p>
+              <p class="text-text-secondary">2025-05-25 13:35 fix(player): 网页全屏下隐藏标题栏</p>
+              <p class="text-text-secondary">2025-05-25 11:41 支持Mac客户端内全屏--选择【网页全屏】即可，目前最好的解决办法，老版本【全屏】按钮mac不支持，其他网页端、Win端支持、支持隔空投送</p>
+              <p class="text-text-secondary">2025-05-25 11:40 fix(ui): 剧集实时更新</p>
+              <p class="text-text-secondary">2025-05-25 01:11 新logo设计、icon，以及全设备客户端打包</p>
+              <p class="text-text-secondary">2025-05-24 16:11 refactor(模态框): 优化详情展示样式和集数处理逻辑、集数显示修改</p>
+              <p class="text-text-secondary">2025-05-24 14:30 refactor(播放器): 移除无法使用的全屏状态恢复逻辑并添加Webkit检测 </p>
+              <p class="text-text-secondary">2025-05-23 20:13 fix(player): 调整z-index值并添加全屏状态恢复逻辑</p>
+              <p class="text-text-secondary">2025-05-23 18:22 fix(player): 同名剧不会被替代 & 实时刷新剧集列表</p>
+              <p class="text-text-secondary">2025-05-23 12:50 feat(播放器): 添加全局键盘快捷键支持并优化视频播放器行为</p>
+              <p class="text-text-secondary">2025-05-23 00:54 feat(播放器): 改进关闭播放器逻辑并简化返回功能</p>
+              <p class="text-text-secondary">2025-05-23 00:08 feat(player): 修复双击全屏功能，并保证全屏后继续播放</p>
+              <p class="text-text-secondary">2025-05-22 23:57 feat(player): 添加全屏切换快捷键并调整播放器配置</p>
+              <p class="text-text-secondary">2025-05-22 22:50 feat(player): dplayer替换成artplayer </p>
+              <p class="text-text-secondary">2025-05-20 14:07 fix(播放器): 清除播放位置记录以确保切换选集后从头开始播放 </p>
+              <p class="text-text-secondary">2025-05-19 21:53 fix(player): 保留视频ID和返回URL参数，优化嵌套播放链接处理 </p>
+              <p class="text-text-secondary">2025-05-19 15:29 refactor(player.js): 移除重复的播放器初始化逻辑 、fix(播放器): 忽略切换视频时的错误处理、fix(播放器): 修复Safari和iOS设备上的视频播放问题、fix(player): 修复视频源更新问题，确保在iOS上正确加载</p>
+              <p class="text-text-secondary">2025-05-19 01:24 refactor(player.js): 优化视频源元素的更新逻辑、fix(播放器): 处理切换视频失败的情况 </p>
+              <p class="text-text-secondary">2025-05-18 17:36 修复清空按钮某些情况不显示的问题 </p>
+              <p class="text-text-secondary">2025-05-18 16:11 添加单个搜索历史标签删除功能、添加搜索框清空按钮 </p>
+              <p class="text-text-secondary">20xx-xx-xx xx:xx 。。。。。篇幅过长不展示了。。。。。 </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="bg-darker py-12">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <!-- 修改：添加链接使左下角logo可点击回到首页 -->
+        <a href="https://kanetflix.pages.dev/" class="mb-6 md:mb-0">
+          <div class="flex items-center">
+            <img src="/image/KANetflix.png" alt="KANetflix图标" class="w-8 h-8 rounded">
+            <span class="ml-2 text-lg font-bold text-gradient">KANetflix</span>
+          </div>
+          <p class="text-text-secondary text-sm mt-2">© 2017-2025 KANetflix. 保留所有权利。</p>
+        </a>
+        
+        <!-- 页脚社交媒体链接（修改后） -->
+       <div class="flex space-x-6">
+         <a href="https://weibo.com/u/2394107291" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200">
+          <i class="fa fa-weibo"></i>
+         </a>
+         <a href="https://image.baidu.com/search/down?thumburl=https://baidu.com&url=https://tvax2.sinaimg.cn/large/8eb32d9bgy1i1r8m3qewqj20y018i7aw.jpg" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200">
+          <i class="fa fa-wechat"></i>
+         </a>
+         <a href="https://qm.qq.com/q/l8NGZjausw" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200">
+          <i class="fa fa-qq"></i>
+         </a>
+         <a href="mailto:macmiao1230@gmail.com" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-text-primary transition-colors duration-200">
+          <i class="fa fa-envelope mr-1"></i>
+         </a>
+      </div>
+    </div>
+      
+      
+      <div class="mt-8 pt-8 border-t border-[#2D2D2D] flex flex-col md:flex-row justify-between items-center">
+        <p class="text-text-secondary text-sm mb-4 md:mb-0">有任何问题？请联系 <a href="mailto:macmiao1230@gmail.com" class="text-primary hover:underline">macmiao1230@gmail.com</a></p>
+        <div class="flex space-x-6">
+          <a href="https://kanetflix.pages.dev/privacy" class="text-text-secondary hover:text-text-primary text-sm transition-colors duration-200">隐私政策</a>
+          <a href="https://kanetflix.pages.dev/about" class="text-text-secondary hover:text-text-primary text-sm transition-colors duration-200">使用条款</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // 移动端菜单切换
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenuButton.innerHTML = '<i class="fa fa-bars text-xl"></i>';
+      } else {
+        mobileMenuButton.innerHTML = '<i class="fa fa-times text-xl"></i>';
+      }
+    });
+    
+    // FAQ 折叠功能
+    const faqToggles = document.querySelectorAll('.faq-toggle');
+    faqToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const targetId = toggle.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        
+        // 切换内容显示状态
+        content.classList.toggle('hidden');
+        
+        // 旋转箭头图标
+        const icon = toggle.querySelector('i');
+        if (content.classList.contains('hidden')) {
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // 如果是在移动设备上，点击导航链接后关闭菜单
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.innerHTML = '<i class="fa fa-bars text-xl"></i>';
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
