@@ -1,6 +1,6 @@
 # 贡献指南
 
-感谢您对 LibreTV 项目的关注！我们欢迎所有形式的贡献，包括但不限于代码提交、问题报告、功能建议、文档改进等。
+感谢您对 WuMan TV 项目的关注！我们欢迎所有形式的贡献，包括但不限于代码提交、问题报告、功能建议、文档改进等。
 
 ## 🚀 快速开始
 
@@ -19,8 +19,8 @@
 
 2. **克隆仓库**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/LibreTV.git
-   cd LibreTV
+   https://github.com/wuman1/TV.git
+   cd TV
    ```
 
 3. **安装依赖**
@@ -50,7 +50,7 @@
 
 如果您发现了 bug 或希望建议新功能：
 
-1. 首先查看 [Issues](https://github.com/LibreSpark/LibreTV/issues) 确保问题尚未被报告
+1. 首先查看  确保问题尚未被报告
 2. 创建新的 Issue，请包含：
    - 清晰的标题和描述
    - 重现步骤（如果是 bug）
@@ -260,17 +260,9 @@ function search(k) {
 - 提交的代码必须是您原创或有合法使用权
 - 同意以项目相同的 MIT 许可证分发您的贡献
 
-## 📞 联系方式
-
-如果您有任何问题或需要帮助：
-
-- **GitHub Issues**: [报告问题或建议](https://github.com/LibreSpark/LibreTV/issues)
-- **GitHub Discussions**: [参与社区讨论](https://github.com/LibreSpark/LibreTV/discussions)
-- **Email**: 通过 GitHub 联系项目维护者
-
 ## 🙏 致谢
 
-感谢所有为 LibreTV 项目做出贡献的开发者！您的每一份贡献都让这个项目变得更好。
+感谢所有为 WuMan TV 项目做出贡献的开发者！您的每一份贡献都让这个项目变得更好。
 
 ### 贡献者列表
 
@@ -280,4 +272,4 @@ function search(k) {
 
 **再次感谢您的贡献！** 🎉
 
-让我们一起构建一个更好的 LibreTV！
+让我们一起构建一个更好的 WuMan TV
