@@ -1,7 +1,7 @@
 # WuMan TV - 免费在线视频搜索与观看平台
 
 <div align="center">
-  <img src="image/image/logo-black.png" alt="WuMan TV Logo" width="120">
+  <img src="image/logo-black.png" alt="WuMan TV Logo" width="120">
   <br>
   <p><strong>自由观影，畅享精彩</strong></p>
 </div>

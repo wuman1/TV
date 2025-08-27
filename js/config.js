@@ -16,7 +16,7 @@ const SITE_CONFIG = {
     name: 'WuMan TV',
     url: 'https://tv-98o.pages.dev/',
     description: '免费在线视频搜索与观看平台',
-    logo: 'image/image/logo-black.png',
+    logo: 'image/logo-black.png',
     version: '1.0.3'
 };
 
